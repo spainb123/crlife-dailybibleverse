@@ -54,7 +54,7 @@ class ContentView extends React.Component<IContentViewProps & IContentViewAction
     }
 }
 
-function mapStateToProps(state : IStore)
+function mapStateToProps(state : IStore) : IContentViewProps
 {
     return {
         entry: state.entries[state.activeEntry],
@@ -62,7 +62,7 @@ function mapStateToProps(state : IStore)
     }
 }
 
-function mapDispatchToProps(dispatch: any)
+function mapDispatchToProps(dispatch: any) : IContentViewActions
 {
     return {
         onDevotionalClicked: () => dispatch(setActiveContent(ActiveContentOption.Devotional)),
