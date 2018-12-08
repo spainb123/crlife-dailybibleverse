@@ -3,6 +3,7 @@ import NavigationViewRow from './NavigationViewRow';
 import { IStore, IStoreEntry } from '../../store/Models';
 import { setActiveEntry } from '../../store/Actions';
 import { connect } from 'react-redux';
+import { ListGroup } from 'reactstrap';
 
 interface INavigationViewProps
 {
@@ -24,7 +25,7 @@ class NavigationView extends React.Component<INavigationViewProps & INavigationV
     render()
     {
         return (
-            <div>
+            <ListGroup>
             { 
                 this.props.entries.map(entry => {
                     return <NavigationViewRow
@@ -35,7 +36,7 @@ class NavigationView extends React.Component<INavigationViewProps & INavigationV
                         onClick={this.onEntryClicked} />
                     })
             }
-            </div>
+            </ListGroup>
         );
     }
 }
