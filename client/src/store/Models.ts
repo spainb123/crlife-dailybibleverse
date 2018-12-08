@@ -7,7 +7,9 @@ export enum ActiveContentOption
 export interface IStoreEntry
 {
     name: string,
+    devotionHeader: string,
     devotionContent: string,
+    readingHeader: string,
     readingContent: string
 }
 

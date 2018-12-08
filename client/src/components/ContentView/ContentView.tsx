@@ -33,9 +33,12 @@ class ContentView extends React.Component<IContentViewProps & IContentViewAction
 
     render()
     {
+        const activeHeader = (this.props.activeContent == ActiveContentOption.Devotional)
+            ? this.props.entry.devotionHeader
+            : this.props.entry.readingHeader;
         const activeContent = (this.props.activeContent == ActiveContentOption.Devotional)
             ? this.props.entry.devotionContent
-            : this.props.entry.readingContent
+            : this.props.entry.readingContent;
 
         return (
             <Container>
@@ -49,6 +52,7 @@ class ContentView extends React.Component<IContentViewProps & IContentViewAction
                 </Row>
                 <Row>
                     <ContentViewContents
+                        header={activeHeader}
                         content={activeContent}>
                     </ContentViewContents>            
                 </Row>
