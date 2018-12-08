@@ -4,7 +4,6 @@ import { IStore, IStoreEntry } from '../../store/Models';
 import { setActiveEntry } from '../../store/Actions';
 import { connect } from 'react-redux';
 
-
 interface INavigationViewProps
 {
     entries: Array<{ id: number, name: string }>
