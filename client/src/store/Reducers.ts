@@ -23,7 +23,7 @@ const initialState : IStore = {
     ]
 }
 
-export default function reduce(state : IStore = initialState, action: ISetActiveEntryAction | ISetActiveContentAction)
+export default function rootReducer(state : IStore = initialState, action: ISetActiveEntryAction | ISetActiveContentAction)
 {
     switch(action.type)
     {

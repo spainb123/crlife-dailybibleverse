@@ -1,29 +1,41 @@
 import React, { MouseEvent } from 'react';
+import { connect } from 'react-redux';
 import ContentViewButton from './ContentViewButton';
 import ContentViewContents from './ContentViewContents';
+import { IStore, IStoreEntry, ActiveContentOption } from '../../store/Models';
+import { setActiveContent } from '../../store/Actions';
 
-interface State {
-    contents: string
+
+interface IContentViewProps
+{
+    entry: IStoreEntry,
+    activeContent: ActiveContentOption
 }
 
-class ContentView extends React.Component
+interface IContentViewActions
 {
-    readonly state: Readonly<State> = stateDevotional(); // initialState
-    
+    onDevotionalClicked() : void
+    onReadingClicked() : void
+}
+
+class ContentView extends React.Component<IContentViewProps & IContentViewActions>
+{    
     onDevotionalClicked = (e: MouseEvent<HTMLElement>) : void =>
     {
-        this.setState(stateDevotional)
-        console.log('show devotional');
+        this.props.onDevotionalClicked();
     }
 
     onReadingClicked = (e: MouseEvent<HTMLElement>) : void =>
     {
-        this.setState(stateReading)
-        console.log('show reading');
+        this.props.onReadingClicked();
     }
 
     render()
     {
+        const activeContent = (this.props.activeContent == ActiveContentOption.Devotional)
+            ? this.props.entry.devotionContent
+            : this.props.entry.readingContent
+
         return (
             <div className="row">
                 <ContentViewButton
@@ -35,14 +47,28 @@ class ContentView extends React.Component
                     children='Reading'
                 ></ContentViewButton>
                 <ContentViewContents
-                    content={this.state.contents}>
+                    content={activeContent}>
                 </ContentViewContents>            
             </div>
         );
     }
 }
 
-const stateDevotional = (prevState?: State) => ({ contents: 'Devotional' });
-const stateReading = (prevState?: State) => ({ contents: 'Reading' });
+function mapStateToProps(state : IStore)
+{
+    return {
+        entry: state.entries[state.activeEntry],
+        activeContent: state.activeContent
+    }
+}
 
-export default ContentView;
+function mapDispatchToProps(dispatch: any)
+{
+    return {
+        onDevotionalClicked: () => dispatch(setActiveContent(ActiveContentOption.Devotional)),
+        onReadingClicked: () => dispatch(setActiveContent(ActiveContentOption.Reading)) 
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContentView);
