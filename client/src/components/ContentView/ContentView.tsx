@@ -5,7 +5,7 @@ import ContentViewContents from './ContentViewContents';
 import { IStore, IStoreEntry, ActiveContentOption } from '../../store/Models';
 import { setActiveContent } from '../../store/Actions';
 import { Container, Row, Col} from 'reactstrap';
-
+import './ContentView.css';
 
 interface IContentViewProps
 {
@@ -43,12 +43,14 @@ class ContentView extends React.Component<IContentViewProps & IContentViewAction
         return (
             <Container>
                 <Row>
-                    <ContentViewButton
-                        onClick={this.onDevotionalClicked}
-                        children='Devotional'></ContentViewButton>
-                    <ContentViewButton
-                        onClick={this.onReadingClicked}
-                        children='Reading'></ContentViewButton>
+                    <Col className="ButtonRow">
+                        <ContentViewButton
+                            onClick={this.onDevotionalClicked}
+                            children='Devotional'></ContentViewButton>
+                        <ContentViewButton
+                            onClick={this.onReadingClicked}
+                            children='Reading'></ContentViewButton>
+                    </Col>
                 </Row>
                 <Row>
                     <ContentViewContents

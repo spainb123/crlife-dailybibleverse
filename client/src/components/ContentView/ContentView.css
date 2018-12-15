@@ -1,0 +1,11 @@
+.ButtonRow {
+    margin-top: 10px;
+    border: 2px solid red;
+}
+
+@media only screen and (min-width: 420px)
+{
+    .ButtonRow {
+        border: 2px solid blue;
+    }
+}
