@@ -7,6 +7,7 @@ import NavigationView from './components/NavigationView/NavigationView';
 import { createStore } from 'redux';
 import rootReducer from './store/Reducers';
 import { Container, Row, Col } from 'reactstrap';
+import PaginationView from './components/PaginationView/PaginationView';
 
 class App extends Component {
 
@@ -16,14 +17,24 @@ class App extends Component {
     return (
       <Provider store={this.store}>
         <div className="App">
-          <Container>
+          <Container className="Landscape">
             <Row>
               <Col xs="3">
                 <NavigationView></NavigationView>
               </Col>
               <Col xs="9">
-                <ContentView></ContentView>
+                <ContentView/>
               </Col>
+            </Row>
+          </Container>
+          <Container className="Portrait">
+            <Row>
+              <Col>
+                <ContentView/>
+              </Col>
+            </Row>
+            <Row className="PageNav">
+              <PaginationView />
             </Row>
           </Container>
         </div>
