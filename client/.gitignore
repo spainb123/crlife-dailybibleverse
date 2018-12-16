@@ -11,6 +11,9 @@
 # production
 /build
 
+# deployment
+ftp-creds.json
+
 # misc
 .DS_Store
 .env.local
