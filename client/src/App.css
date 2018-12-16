@@ -2,9 +2,21 @@
   text-align: center;
 }
 
+.App .NavViewCol 
+{
+  padding-top: 48px;
+}
+
 .PageNav
 {
   position: fixed;
+  bottom: 0px;
+  right: 0px;
+}
+
+.PageNav nav
+{
+  position: relative;
   bottom: 0px;
 }
 

@@ -4,6 +4,7 @@ import PaginationItem from 'reactstrap/lib/PaginationItem';
 import { IStore, IStoreEntry } from '../../store/Models';
 import { setActiveEntry } from '../../store/Actions';
 import { connect } from 'react-redux';
+import './PaginationView.css';
 
 interface IPaginationViewProps
 {
@@ -34,8 +35,9 @@ class PaginationView extends React.Component<IPaginationViewProps & IPaginationV
         const nextDisabled = (this.props.activeId == this.props.entries.length - 1);
         const activeEntry = this.props.entries[this.props.activeId];
 
+
         return (
-            <Pagination size="lg">
+            <Pagination className="pg-view" size="lg">
                 <PaginationItem
                     disabled={ prevDisabled }>
                     <PaginationLink 

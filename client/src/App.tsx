@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import logo from './logo.svg';
 import './App.css';
 import ContentView from './components/ContentView/ContentView';
 import NavigationView from './components/NavigationView/NavigationView';
@@ -19,7 +18,7 @@ class App extends Component {
         <div className="App">
           <Container className="Landscape">
             <Row>
-              <Col xs="3">
+              <Col xs="3" className="NavViewCol">
                 <NavigationView></NavigationView>
               </Col>
               <Col xs="9">
@@ -33,9 +32,9 @@ class App extends Component {
                 <ContentView/>
               </Col>
             </Row>
-            <Row className="PageNav">
+            <div className="PageNav">
               <PaginationView />
-            </Row>
+            </div>
           </Container>
         </div>
       </Provider>
