@@ -15,6 +15,7 @@ export interface IStoreEntry
 
 export interface IStore
 {
+    loading: boolean,
     activeEntry: number,
     activeContent: ActiveContentOption,
     entries: Array<IStoreEntry>

@@ -5,37 +5,33 @@ import ContentView from './components/ContentView/ContentView';
 import NavigationView from './components/NavigationView/NavigationView';
 import { createStore } from 'redux';
 import rootReducer from './store/Reducers';
-import { Container, Row, Col } from 'reactstrap';
-import PaginationView from './components/PaginationView/PaginationView';
+import MockDailyBibleVerseApi from './api/MockDailyBibleVerseApi';
+import { loadDailyBibleVersesSuccess } from './store/Actions';
+import LandscapeLayout from './layouts/LandscapeLayout/LandscapeLayout';
+import PortraitLayout from './layouts/PortraitLayout/PortraitLayout';
 
 class App extends Component {
 
+  private dbvApi = new MockDailyBibleVerseApi();
   private store = createStore(rootReducer);
+
+  constructor(props: any)
+  {
+    super(props);
+
+    // NOTE: A more 'redux' pattern would be to leverage redux-thunk and use actions to load data
+    // https://medium.com/fullstack-academy/thunks-in-redux-the-basics-85e538a3fe60
+    this.dbvApi.getDailyData().then(entries => {
+      this.store.dispatch(loadDailyBibleVersesSuccess(entries))
+    });
+  }
 
   render() {
     return (
       <Provider store={this.store}>
         <div className="App">
-          <Container className="Landscape">
-            <Row>
-              <Col xs="3" className="NavViewCol">
-                <NavigationView></NavigationView>
-              </Col>
-              <Col xs="9">
-                <ContentView/>
-              </Col>
-            </Row>
-          </Container>
-          <Container className="Portrait">
-            <Row>
-              <Col>
-                <ContentView/>
-              </Col>
-            </Row>
-            <div className="PageNav">
-              <PaginationView />
-            </div>
-          </Container>
+          <LandscapeLayout />
+          <PortraitLayout />
         </div>
       </Provider>
     );
