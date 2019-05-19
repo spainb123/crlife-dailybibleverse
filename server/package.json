@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cross-env DEBUG='express:server' && node ./bin/www.js"
+    "start": "cross-env DEBUG='express:server' && nodemon ./bin/www.js"
   },
   "author": "Ben Spain",
   "license": "ISC",
@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.16.1",
-    "cross-env": "^5.2.0"
+    "cross-env": "^5.2.0",
+    "nodemon": "^1.19.0"
   }
 }
