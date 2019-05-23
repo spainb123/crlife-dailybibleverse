@@ -1,12 +1,12 @@
 import * as Debug from 'debug';
 import * as http from 'http';
-import { bootstrap } from './server';
+import * as config from './config';
 
 const debug = Debug("express:server");
 
 const httpPort = normalizePort(process.env.PORT || 8080);
 
-const app = bootstrap();
+const app = config.default();
 app.set("port", httpPort);
 
 const httpServer = http.createServer(app);
