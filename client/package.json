@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "webpack",
+    "dev": "webpack-dev-server --env.dev"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,7 @@
     "source-map-loader": "^0.2.4",
     "typescript": "^3.4.5",
     "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2"
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.4.1"
   }
 }
