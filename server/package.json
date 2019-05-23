@@ -6,20 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -w",
-    "start": "cross-env DEBUG=express:server node ./dist/main.js"
+    "start": "cross-env DEBUG=express:server nodemon ./dist/main.js"
   },
   "author": "Ben Spain",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "express": "^4.16.4"
   },
   "devDependencies": {
     "@types/debug": "^4.1.4",
     "@types/express": "^4.16.1",
-    "@types/react": "^16.8.18",
-    "@types/react-dom": "^16.8.4",
     "cross-env": "^5.2.0",
     "nodemon": "^1.19.0",
     "typescript": "^3.4.5"
