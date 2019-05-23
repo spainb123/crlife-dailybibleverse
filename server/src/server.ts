@@ -1,10 +1,11 @@
 import * as express from 'express';
-//import * as path from 'path';
-
+import { renderClientHost } from './client-host';
 const app = express();
 
 export function bootstrap() {
-    app.get('/', (req, res) => res.send('CRLife-DBV TS Server'))
+   app.get('/', (req, res) => {
+    res.send(renderClientHost('CRLifeDBV-ClientHost'));
+   });
 
-    return app;
+   return app;
 }
