@@ -1,4 +1,4 @@
-import { fetchNLTData } from './nlt-api-facade';
+import { fetchNLTData } from './nltService';
 import { Request } from 'express-serve-static-core';
 
 interface PassagesQuery {

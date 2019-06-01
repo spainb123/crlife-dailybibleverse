@@ -1,6 +1,7 @@
 import * as express from 'express';
 import loadEnvironment from './env';
-import requestHandler from './../modules/ntl-api';
+import passageRequestHandler from '../modules/passages';
+import readingRequestHandler from '../modules/readings';
 
 const app = express();
 
@@ -13,10 +14,12 @@ export default function config() {
    app.get('/health', (req, res) => res.send('OK: CRLife-DBV TS Server'))
 
    app.get('/passages', (req, res) => {      
-      requestHandler(req).then(data => {
+      passageRequestHandler(req).then(data => {
          res.send(data);
       });
    })
+
+   app.get('/reading', readingRequestHandler)
 
    return app;
 }
