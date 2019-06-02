@@ -6,7 +6,7 @@ interface ILOG_MODULE {
     HELPERS: string,
     MODULE_PASSAGES: string,
     MODULE_READINGS: string,
-    SERVICES_PASSAGES: string
+    SERVICES_PASSAGES_LOCAL_STORAGE: string
 }
 
 export const LOG_MODULE : ILOG_MODULE = {
@@ -14,7 +14,7 @@ export const LOG_MODULE : ILOG_MODULE = {
     HELPERS: 'app:helpers',
     MODULE_PASSAGES: 'app:module:passages',
     MODULE_READINGS: 'app:module:readings',
-    SERVICES_PASSAGES: 'app:services:passages'
+    SERVICES_PASSAGES_LOCAL_STORAGE: 'app:services:passages:localstorage'
 }
 
 export default class Logger

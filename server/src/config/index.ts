@@ -13,8 +13,8 @@ export default function config(logger: Logger) {
 
    loadEnvironment();
 
-   const passagesStorage = new PassagesStorage();
-   const passagesModule = new PassageModule(passagesStorage, loadMetadata());
+   const passagesStorage = new PassagesStorage(logger);
+   const passagesModule = new PassageModule(passagesStorage, loadMetadata(), logger);
 
    app.use('/', express.static('public'))
 
