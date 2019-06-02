@@ -3,7 +3,7 @@ import { Request, Response } from 'express-serve-static-core';
 import IPassageStorageService from './../../descriptors/IPassageStorageService';
 import { PassageEntryType } from '../../descriptors/PassageEntryType';
 import IModuleRequestHandler from '../../descriptors/IModuleRequestHandler';
-import { getNormalizedDates } from '../../helpers/passageEntryHelper';
+import { getNormalizedDates } from '../../helpers/dateHelper';
 import Logger from '../../logger';
 
 interface PassagesQuery {

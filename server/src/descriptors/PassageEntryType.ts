@@ -1,7 +1,7 @@
 export enum PassageEntryType 
 {
-    ot,
-    nt,
-    ps,
-    pr
+    ot = "ot",
+    nt = "nt",
+    ps = "ps",
+    pr = "pr"
 }

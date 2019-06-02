@@ -1,8 +1,8 @@
 import * as express from 'express';
 import loadEnvironment from './env';
 import loadMetadata from './metaLoader';
-//import passageRequestHandler from '../modules/passages';
-import readingRequestHandler from '../modules/readings';
+import NotesStorage from '../services/noteStorage';
+import ReadingModule from '../modules/readings';
 import PassagesStorage from '../services/passageStorage';
 import PassageModule from '../modules/passages';
 import Logger from '../logger';
@@ -13,8 +13,12 @@ export default function config(logger: Logger) {
 
    loadEnvironment();
 
+   const metadata = loadMetadata();
+
    const passagesStorage = new PassagesStorage(logger);
-   const passagesModule = new PassageModule(passagesStorage, loadMetadata(), logger);
+   const notesStorage = new NotesStorage(logger);
+   const passagesModule = new PassageModule(passagesStorage, metadata, logger);
+   const readingsModule = new ReadingModule(passagesStorage, notesStorage, metadata, logger)
 
    app.use('/', express.static('public'))
 
@@ -25,7 +29,7 @@ export default function config(logger: Logger) {
 
    app.get('/passages', passagesModule.requestHandler.bind(passagesModule))
 
-   app.get('/reading', readingRequestHandler)
+   app.get('/reading', readingsModule.requestHandler.bind(readingsModule))
 
    return app;
 }
