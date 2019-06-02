@@ -1,12 +1,12 @@
-import * as Debug from 'debug';
 import * as http from 'http';
 import * as config from './config';
+import Logger from './logger';
 
-const debug = Debug("express:server");
+const logger = new Logger();
 
 const httpPort = normalizePort(process.env.PORT || 8080);
 
-const app = config.default();
+const app = config.default(logger);
 app.set("port", httpPort);
 
 const httpServer = http.createServer(app);
@@ -69,7 +69,7 @@ function onListening() {
     var bind = typeof addr === "string"
         ? "pipe " + addr
         : "port " + addr.port;
-    debug("Listening on " + bind);
     console.log(`Process env DEBUG: ${process.env.DEBUG}`)
+    logger.debug(logger.modules.SERVER, "Listening on " + bind);
 }
 
