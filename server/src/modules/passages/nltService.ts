@@ -5,6 +5,6 @@ const nltKey = process.env.NLT_API_KEY;
 
 export async function fetchNLTData(nltRef: string) : Promise<string> 
 {
-    const response = await fetch(`${nltEndpoint}?ref=${nltRef}&key=${nltKey}`);
+    const response = await fetch(`${nltEndpoint}?ref=${nltRef}&version=nlt&key=${nltKey}`);
     return response.text();
 }

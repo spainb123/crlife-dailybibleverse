@@ -4,3 +4,4 @@ app.config.json
 /node_modules
 /public
 /dist
+/data
