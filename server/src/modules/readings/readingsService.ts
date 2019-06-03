@@ -7,6 +7,7 @@ import Logger from '../../logger';
 import INoteStorageService from '../../descriptors/INoteStorageService';
 import { NoteEntryType } from '../../descriptors/NoteEntryType';
 import { getNormalizedDates, getFullDate } from '../../helpers/dateHelper';
+import { Buffer } from 'buffer';
 
 
 export interface ReadingRef {
@@ -39,7 +40,7 @@ enum ContentType {
 interface FetchedData {
     content: ContentType,
     type: PassageEntryType | NoteEntryType,
-    data: string
+    body: string
 }
 
 export default class ReadingsService implements IModuleRequestHandler
@@ -65,7 +66,7 @@ export default class ReadingsService implements IModuleRequestHandler
                 return <FetchedData>{
                     content: ContentType.passage,
                     type,
-                    data
+                    body: data
                 }
             })
         })
@@ -76,7 +77,7 @@ export default class ReadingsService implements IModuleRequestHandler
                 return <FetchedData>{
                     content: ContentType.note,
                     type, 
-                    data
+                    body: data
                 }
             })
         })
@@ -135,16 +136,18 @@ export default class ReadingsService implements IModuleRequestHandler
             }
         };
 
-        fetchedDataCollection.forEach(data => {
+        fetchedDataCollection.forEach(fetched => {
 
-            if (data.content === ContentType.passage)
+            const body = Buffer.from(fetched.body).toString('base64');
+
+            if (fetched.content === ContentType.passage)
             {
-                retval.pass[data.type] = data.data;
+                retval.pass[fetched.type] = body;
             }
 
-            if (data.content === ContentType.note)
+            if (fetched.content === ContentType.note)
             {
-                retval.note[data.type] = data.data;
+                retval.note[fetched.type] = body;
             }
         });
 
