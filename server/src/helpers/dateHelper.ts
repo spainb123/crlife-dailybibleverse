@@ -12,7 +12,7 @@ export function getFullDate(month: number, date: number) : string
     const day = `${date}${getDayStringSuffix(date)}`;
     const year = new Date().getFullYear();
 
-    return `${month} ${day}, ${year}`;
+    return `${monthName} ${day}, ${year}`;
 }
 
 function getMonthName(month: number) : string

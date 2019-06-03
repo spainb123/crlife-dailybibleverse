@@ -1,4 +1,5 @@
 import { Request, Response } from 'express-serve-static-core';
+import * as cheerio from 'cheerio';
 import IModuleRequestHandler from "../../descriptors/IModuleRequestHandler";
 import IPassageStorageService from "../../descriptors/IPassageStorageService";
 import { PassageEntryType } from '../../descriptors/PassageEntryType';
@@ -6,6 +7,7 @@ import Logger from '../../logger';
 import INoteStorageService from '../../descriptors/INoteStorageService';
 import { NoteEntryType } from '../../descriptors/NoteEntryType';
 import { getNormalizedDates, getFullDate } from '../../helpers/dateHelper';
+
 
 export interface ReadingRef {
     month: number,
@@ -84,7 +86,8 @@ export default class ReadingsService implements IModuleRequestHandler
 
         Promise.all(fetchers).then(fetcherData => {
             const retval = this.buildResponse(fetcherData, getFullDate(month, date));
-            response.send(retval);
+            response.setHeader('Content-Type', 'application/json');
+            response.end(JSON.stringify(retval));
         });
     }
 
@@ -96,6 +99,9 @@ export default class ReadingsService implements IModuleRequestHandler
             month, 
             date, 
             entryType
+        }).then(data => {
+            const body = cheerio.load(data)('body').html();
+            return `<body>${body}</body>`; 
         });
     }
 
@@ -107,6 +113,8 @@ export default class ReadingsService implements IModuleRequestHandler
             month, 
             date,
             entryType
+        }).then(data => {
+            return `<body>${data}</body>`;
         });
     }
 
