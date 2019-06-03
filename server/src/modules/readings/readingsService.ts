@@ -38,7 +38,7 @@ enum ContentType {
 }
 
 interface FetchedData {
-    content: ContentType,
+    contentType: ContentType,
     type: PassageEntryType | NoteEntryType,
     body: string
 }
@@ -64,7 +64,7 @@ export default class ReadingsService implements IModuleRequestHandler
         const passFetchers = [PassageEntryType.ot, PassageEntryType.nt, PassageEntryType.ps, PassageEntryType.pr].map(type => {
             return this.fetchPassage(month, date, type).then(data => {
                 return <FetchedData>{
-                    content: ContentType.passage,
+                    contentType: ContentType.passage,
                     type,
                     body: data
                 }
@@ -75,7 +75,7 @@ export default class ReadingsService implements IModuleRequestHandler
         const noteFetchers = noteTypes.map(type => {
             return this.fetchNote(month, date, type).then(data => {
                 return <FetchedData>{
-                    content: ContentType.note,
+                    contentType: ContentType.note,
                     type, 
                     body: data
                 }
@@ -140,12 +140,12 @@ export default class ReadingsService implements IModuleRequestHandler
 
             const body = Buffer.from(fetched.body).toString('base64');
 
-            if (fetched.content === ContentType.passage)
+            if (fetched.contentType === ContentType.passage)
             {
                 retval.pass[fetched.type] = body;
             }
 
-            if (fetched.content === ContentType.note)
+            if (fetched.contentType === ContentType.note)
             {
                 retval.note[fetched.type] = body;
             }
