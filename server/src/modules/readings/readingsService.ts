@@ -8,6 +8,8 @@ import INoteStorageService from '../../descriptors/INoteStorageService';
 import { NoteEntryType } from '../../descriptors/NoteEntryType';
 import { getNormalizedDates, getFullDate } from '../../helpers/dateHelper';
 import { Buffer } from 'buffer';
+import ReadingData from '../../descriptors/ReadingData';
+import IReadingsProvider from '../../descriptors/IReadingsProvider';
 
 
 export interface ReadingRef {
@@ -15,22 +17,6 @@ export interface ReadingRef {
     date: number
 }
 
-export interface ReadingData {
-    fullDate: string,
-    pass: {
-        [ key: string ] : string,
-        ot: string,
-        nt: string,
-        ps: string,
-        pr: string
-    }
-    note: {
-        [ key : string ] : string,
-        ot: string,
-        nt: string,
-        fs: string
-    }
-}
 
 enum ContentType {
     passage,
@@ -43,7 +29,7 @@ interface FetchedData {
     body: string
 }
 
-export default class ReadingsService implements IModuleRequestHandler
+export default class ReadingsService implements IModuleRequestHandler, IReadingsProvider
 {
     constructor(
         private passageStorageService: IPassageStorageService,
@@ -54,11 +40,15 @@ export default class ReadingsService implements IModuleRequestHandler
 
     requestHandler(request: Request, response: Response): void {
         
-        // Gather passages
-        const month = request.query.month;
-        const date = request.query.date;
-        const norDates = getNormalizedDates({ month, date });
+        this.fetchReadings(request.query.month, request.query.date).then(data =>
+            {
+                response.setHeader('Content-Type', 'application/json');
+                response.end(JSON.stringify(data));        
+            })
+    }
 
+    fetchReadings(month:number, date: number) : Promise<ReadingData>
+    {
         const fetchers : Promise<FetchedData>[] = [];
 
         const passFetchers = [PassageEntryType.ot, PassageEntryType.nt, PassageEntryType.ps, PassageEntryType.pr].map(type => {
@@ -71,7 +61,8 @@ export default class ReadingsService implements IModuleRequestHandler
             })
         })
 
-        const noteTypes = (<Array<string>>this.metadata[norDates.month][norDates.date]['note']).map(type => <NoteEntryType><unknown>type);
+        const stringDates = getNormalizedDates({ month, date });
+        const noteTypes = (<Array<string>>this.metadata[stringDates.month][stringDates.date]['note']).map(type => <NoteEntryType><unknown>type);
         const noteFetchers = noteTypes.map(type => {
             return this.fetchNote(month, date, type).then(data => {
                 return <FetchedData>{
@@ -85,10 +76,9 @@ export default class ReadingsService implements IModuleRequestHandler
         fetchers.push(...passFetchers);
         fetchers.push(...noteFetchers);
 
-        Promise.all(fetchers).then(fetcherData => {
+        return Promise.all(fetchers).then(fetcherData => {
             const retval = this.buildResponse(fetcherData, getFullDate(month, date));
-            response.setHeader('Content-Type', 'application/json');
-            response.end(JSON.stringify(retval));
+            return retval;
         });
     }
 

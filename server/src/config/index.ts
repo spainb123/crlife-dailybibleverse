@@ -5,6 +5,7 @@ import NotesStorage from '../services/noteStorage';
 import ReadingModule from '../modules/readings';
 import PassagesStorage from '../services/passageStorage';
 import PassageModule from '../modules/passages';
+import ClientModule from '../modules/client';
 import Logger from '../logger';
 
 const app = express();
@@ -19,8 +20,11 @@ export default function config(logger: Logger) {
    const notesStorage = new NotesStorage(logger);
    const passagesModule = new PassageModule(passagesStorage, metadata, logger);
    const readingsModule = new ReadingModule(passagesStorage, notesStorage, metadata, logger)
+   const clientModule = new ClientModule(readingsModule, logger);
 
-   app.use('/', express.static('public'))
+   app.use('/public', express.static('public'))
+
+   app.get('/client', clientModule.requestHandler.bind(clientModule))
 
    app.get('/health', (req, res) => {
       logger.debug(logger.modules.SERVER, 'Health check request')
