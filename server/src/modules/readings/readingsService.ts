@@ -40,7 +40,10 @@ export default class ReadingsService implements IModuleRequestHandler, IReadings
 
     requestHandler(request: Request, response: Response): void {
         
-        this.fetchReadings(request.query.month, request.query.date).then(data =>
+        const month = parseInt(request.query.month);
+        const date = parseInt(request.query.date);
+
+        this.fetchReadings(month, date).then(data =>
             {
                 response.setHeader('Content-Type', 'application/json');
                 response.end(JSON.stringify(data));        
