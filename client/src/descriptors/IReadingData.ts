@@ -1,4 +1,4 @@
-export default interface ReadingData {
+export default interface IReadingData {
     fullDate: string,
     pass: {
         [ key: string ] : string,

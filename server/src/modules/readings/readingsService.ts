@@ -8,7 +8,7 @@ import INoteStorageService from '../../descriptors/INoteStorageService';
 import { NoteEntryType } from '../../descriptors/NoteEntryType';
 import { getNormalizedDates, getFullDate } from '../../helpers/dateHelper';
 import { Buffer } from 'buffer';
-import ReadingData from '../../descriptors/ReadingData';
+import IReadingData from '../../descriptors/IReadingData';
 import IReadingsProvider from '../../descriptors/IReadingsProvider';
 
 
@@ -50,7 +50,7 @@ export default class ReadingsService implements IModuleRequestHandler, IReadings
             })
     }
 
-    fetchReadings(month:number, date: number) : Promise<ReadingData>
+    fetchReadings(month:number, date: number) : Promise<IReadingData>
     {
         const fetchers : Promise<FetchedData>[] = [];
 
@@ -95,7 +95,7 @@ export default class ReadingsService implements IModuleRequestHandler, IReadings
             entryType
         }).then(data => {
             const body = cheerio.load(data)('body').html();
-            return `<body>${body}</body>`; 
+            return `${body}`; 
         });
     }
 
@@ -107,14 +107,12 @@ export default class ReadingsService implements IModuleRequestHandler, IReadings
             month, 
             date,
             entryType
-        }).then(data => {
-            return `<body>${data}</body>`;
-        });
+        })
     }
 
-    private buildResponse(fetchedDataCollection: FetchedData[], fullDate: string) : ReadingData {
+    private buildResponse(fetchedDataCollection: FetchedData[], fullDate: string) : IReadingData {
 
-        const retval : ReadingData = {
+        const retval : IReadingData = {
             fullDate,
             pass: {
                 ot: '',
@@ -131,7 +129,8 @@ export default class ReadingsService implements IModuleRequestHandler, IReadings
 
         fetchedDataCollection.forEach(fetched => {
 
-            const body = Buffer.from(fetched.body).toString('base64');
+            //const body = Buffer.from(fetched.body).toString('base64');
+            const body = encodeURIComponent(fetched.body);
 
             if (fetched.contentType === ContentType.passage)
             {
