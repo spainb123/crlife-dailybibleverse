@@ -17,22 +17,9 @@ code {
     monospace;
 } 
 
-.App p {
-  text-align: center;
-}
-
-@media only screen and ( min-width: 768px )
+.Footer
 {
-  .App .Portrait
-  {
-    display: none;
-  }
-}
-
-@media only screen and ( max-width: 767px )
-{
-  .App .Landscape
-  {
-    display: none;
-  }
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
 }

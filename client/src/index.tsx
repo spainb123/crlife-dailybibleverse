@@ -3,7 +3,8 @@ import * as ReactDOM from "react-dom";
 import { App } from "./components/App";
 import ParseServerSideData from "./helpers/ServerSideDataRenderer";
 
-require('./index.css');
+import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const SSR_DATA = ParseServerSideData(document.getElementById("__CRDBV_SSR_DATA").innerText);
 
