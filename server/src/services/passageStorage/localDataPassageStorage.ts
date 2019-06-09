@@ -14,13 +14,13 @@ export default class LocalDataPassageStorageService extends BaseLocalStorageServ
 
         this.logger.debug(this.logger.modules.SERVICES_PASSAGES_LOCAL_STORAGE, `Reading passage for entry: ${util.inspect(entry)}`);
 
-        return this.readFile(entry.month, entry.date, `pass-${entry.entryType}.html`);
+        return this.readFileAtEntryPath(entry.month, entry.date, `pass-${entry.entryType}.html`);
     }    
     
     writePassage(entry: IPassageEntry, content: string): Promise<void> {
 
         this.logger.debug(this.logger.modules.SERVICES_PASSAGES_LOCAL_STORAGE, `Writing passage for entry: ${util.inspect(entry)}`);
 
-        return this.writeFile(entry.month, entry.date, `pass-${entry.entryType}.html`, content);
+        return this.writeFileAtEntryPath(entry.month, entry.date, `pass-${entry.entryType}.html`, content);
     }
 }

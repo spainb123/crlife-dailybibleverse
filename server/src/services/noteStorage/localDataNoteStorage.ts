@@ -14,6 +14,6 @@ export default class LocalDataNoteStorageService extends BaseLocalStorageService
 
         this.logger.debug(this.logger.modules.SERVICES_NOTES_LOCAL_STORAGE, `Reading notes for entry: ${util.inspect(entry)}`);
 
-        return this.readFile(entry.month, entry.date, `note-${entry.entryType}.html`);
+        return this.readFileAtEntryPath(entry.month, entry.date, `note-${entry.entryType}.html`);
     }
 } 

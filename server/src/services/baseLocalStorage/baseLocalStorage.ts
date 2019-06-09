@@ -12,22 +12,40 @@ export default class BaseLocalStorageService {
 
     constructor(protected logger: Logger) {}
 
-    readFile(month: number, date: number, file: string) : Promise<string>
+    readFileAtEntryPath(month: number, date: number, file: string) : Promise<string>
     {
         const entryPath = this.getEntryPath(month, date, file);
 
-        this.logger.debug(this.logger.modules.SERVICES_BASE_LOCAL_STORAGE, `Reading local file: ${entryPath}`);
+        this.logger.debug(this.logger.modules.SERVICES_BASE_LOCAL_STORAGE, `Reading local file with entry path from: ${entryPath}`);
 
         return readLocalFile(entryPath).then(data => data.toString());
     }
 
-    writeFile(month: number, date: number, file: string, content: string) : Promise<void>
+    readFile(file: string) : Promise<string>
+    {
+        const filePath = path.join(localDataDir, file);
+
+        this.logger.debug(this.logger.modules.SERVICES_BASE_LOCAL_STORAGE, `Reading local file from: ${filePath}`);
+
+        return readLocalFile(filePath).then(data => data.toString());
+    }
+
+    writeFileAtEntryPath(month: number, date: number, file: string, content: string) : Promise<void>
     {
         const entryPath = this.getEntryPath(month, date, file);
 
-        this.logger.debug(this.logger.modules.SERVICES_BASE_LOCAL_STORAGE, `Writing local file to ${entryPath}`);
+        this.logger.debug(this.logger.modules.SERVICES_BASE_LOCAL_STORAGE, `Writing local file with entry path to ${entryPath}`);
 
         return writeLocalFile(entryPath, content);
+    }
+
+    writeFile(file: string, content: string) : Promise<void>
+    {
+        const filePath = path.join(localDataDir, file);
+
+        this.logger.debug(this.logger.modules.SERVICES_BASE_LOCAL_STORAGE, `Writing local file to ${filePath}`);
+
+        return writeLocalFile(filePath, content);
     }
 
     private getEntryPath(month: number, date: number, file: string)
