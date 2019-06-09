@@ -1,28 +1,35 @@
 import * as React from 'react';
 import { Container, Row, Col } from 'reactstrap';
+import { Selection } from '../store/Models';
+import { setSelection } from '../store/Actions';
+import { connect } from 'react-redux';
 
-export default class Footer extends React.Component
+interface IFooterActions
+{
+    makeSelection(footerSelection : Selection) : void
+}
+class Footer extends React.Component<IFooterActions>
 {
     onFooterButtonOTPassClicked = () => {
-        document.getElementById('OTHEAD').scrollIntoView();
+        this.props.makeSelection(Selection.PassOT);
     }
     onFooterButtonNTPassClicked = () => {
-        document.getElementById('NTHEAD').scrollIntoView();
+        this.props.makeSelection(Selection.PassNT);
     }
     onFooterButtonPSPassClicked = () => {
-        document.getElementById('PSHEAD').scrollIntoView();
+        this.props.makeSelection(Selection.PassPS);
     }
     onFooterButtonPRPassClicked = () => {
-        document.getElementById('PRHEAD').scrollIntoView();
+        this.props.makeSelection(Selection.PassPr);
     }
     onFooterButtonOTNoteClicked = () => {
-        document.getElementById('OTNOTE').scrollIntoView();
+        this.props.makeSelection(Selection.NotesOT);
     }
     onFooterButtonNTNoteClicked = () => {
-        document.getElementById('NTNOTE').scrollIntoView();
+        this.props.makeSelection(Selection.NotesNT);
     }
     onFooterButtonFSNoteClicked = () => {
-        document.getElementById('FSNOTE').scrollIntoView();
+        this.props.makeSelection(Selection.NotesFS);
     }
 
     render() {
@@ -51,5 +58,14 @@ export default class Footer extends React.Component
                 </Row>
             </Container>
         )
-    } 
+    }
 }
+
+function mapDispatchToProps(dispatch: any) : IFooterActions
+{
+    return {
+        makeSelection: (selection: Selection) => { dispatch(setSelection(selection))}
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Footer);

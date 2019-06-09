@@ -1,4 +1,4 @@
-import IReadingData from "../descriptors/IReadingData";
+import IReadingData from "../store/IReadingData";
 
 export default function ParseServerSideData(data: string) : IReadingData
 {
