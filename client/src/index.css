@@ -15,4 +15,24 @@ h1 {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}  
+} 
+
+.App p {
+  text-align: center;
+}
+
+@media only screen and ( min-width: 768px )
+{
+  .App .Portrait
+  {
+    display: none;
+  }
+}
+
+@media only screen and ( max-width: 767px )
+{
+  .App .Landscape
+  {
+    display: none;
+  }
+}
