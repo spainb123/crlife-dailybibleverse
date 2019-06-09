@@ -1,11 +1,16 @@
+
+export interface IPassageDataItem {
+    heading: string,
+    body: string
+}
 export default interface IReadingData {
     fullDate: string,
     pass: {
-        [ key: string ] : string,
-        ot: string,
-        nt: string,
-        ps: string,
-        pr: string
+        [ key: string ] : IPassageDataItem,
+        ot: IPassageDataItem,
+        nt: IPassageDataItem,
+        ps: IPassageDataItem,
+        pr: IPassageDataItem
     }
     note: {
         [ key : string ] : string,

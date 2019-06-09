@@ -8,7 +8,7 @@ import INoteStorageService from '../../descriptors/INoteStorageService';
 import { NoteEntryType } from '../../descriptors/NoteEntryType';
 import { getNormalizedDates, getFullDate } from '../../helpers/dateHelper';
 import { Buffer } from 'buffer';
-import IReadingData from '../../descriptors/IReadingData';
+import IPassageDataItem from '../../descriptors/IReadingData';
 import IReadingsProvider from '../../descriptors/IReadingsProvider';
 
 
@@ -24,6 +24,7 @@ enum ContentType {
 }
 
 interface FetchedData {
+    heading: string,
     contentType: ContentType,
     type: PassageEntryType | NoteEntryType,
     body: string
@@ -50,13 +51,18 @@ export default class ReadingsService implements IModuleRequestHandler, IReadings
             })
     }
 
-    fetchReadings(month:number, date: number) : Promise<IReadingData>
+    fetchReadings(month:number, date: number) : Promise<IPassageDataItem>
     {
         const fetchers : Promise<FetchedData>[] = [];
+        const stringDates = getNormalizedDates({ month, date });
 
         const passFetchers = [PassageEntryType.ot, PassageEntryType.nt, PassageEntryType.ps, PassageEntryType.pr].map(type => {
             return this.fetchPassage(month, date, type).then(data => {
+
+                const heading = this.formatHeading(<string>this.metadata[stringDates.month][stringDates.date]['pass'][type]);
+
                 return <FetchedData>{
+                    heading,
                     contentType: ContentType.passage,
                     type,
                     body: data
@@ -64,7 +70,6 @@ export default class ReadingsService implements IModuleRequestHandler, IReadings
             })
         })
 
-        const stringDates = getNormalizedDates({ month, date });
         const noteTypes = (<Array<string>>this.metadata[stringDates.month][stringDates.date]['note']).map(type => <NoteEntryType><unknown>type);
         const noteFetchers = noteTypes.map(type => {
             return this.fetchNote(month, date, type).then(data => {
@@ -110,15 +115,27 @@ export default class ReadingsService implements IModuleRequestHandler, IReadings
         })
     }
 
-    private buildResponse(fetchedDataCollection: FetchedData[], fullDate: string) : IReadingData {
+    private formatHeading(heading: string) : string
+    {
+        heading = heading.replace('.', ' ');
+        if (isNaN(parseInt(heading.substr(0, 1))))
+        {
+            return heading;
+        }
+        else {
+            return heading.substr(0, 1) + ' ' + heading.substr(1)
+        }
+    }
 
-        const retval : IReadingData = {
+    private buildResponse(fetchedDataCollection: FetchedData[], fullDate: string) : IPassageDataItem {
+
+        const retval : IPassageDataItem = {
             fullDate,
             pass: {
-                ot: '',
-                nt: '',
-                ps: '',
-                pr: ''
+                ot: { heading: '', body: '' },
+                nt: { heading: '', body: '' },
+                ps: { heading: '', body: '' },
+                pr: { heading: '', body: '' }
             },
             note: {
                 ot: '',
@@ -129,12 +146,11 @@ export default class ReadingsService implements IModuleRequestHandler, IReadings
 
         fetchedDataCollection.forEach(fetched => {
 
-            //const body = Buffer.from(fetched.body).toString('base64');
             const body = encodeURIComponent(fetched.body);
 
             if (fetched.contentType === ContentType.passage)
             {
-                retval.pass[fetched.type] = body;
+                retval.pass[fetched.type] = { heading: fetched.heading, body };
             }
 
             if (fetched.contentType === ContentType.note)

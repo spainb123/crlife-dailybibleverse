@@ -8,10 +8,10 @@ export default function ParseServerSideData(data: string) : IReadingData
     ssrData.note.ot = decodeURIComponent(ssrData.note.ot);
     ssrData.note.nt = decodeURIComponent(ssrData.note.nt);
     ssrData.note.fs = decodeURIComponent(ssrData.note.fs);
-    ssrData.pass.ot = decodeURIComponent(ssrData.pass.ot);
-    ssrData.pass.nt = decodeURIComponent(ssrData.pass.nt);
-    ssrData.pass.pr = decodeURIComponent(ssrData.pass.pr);
-    ssrData.pass.ps = decodeURIComponent(ssrData.pass.ps);
+    ssrData.pass.ot.body = decodeURIComponent(ssrData.pass.ot.body);
+    ssrData.pass.nt.body = decodeURIComponent(ssrData.pass.nt.body);
+    ssrData.pass.pr.body = decodeURIComponent(ssrData.pass.pr.body);
+    ssrData.pass.ps.body = decodeURIComponent(ssrData.pass.ps.body);
 
     return ssrData;
 }

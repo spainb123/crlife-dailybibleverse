@@ -1,6 +1,6 @@
-import IReadingData from "./IReadingData";
+import IPassageDataItem from "./IReadingData";
 
 export default interface IReadingsProvider
 {
-    fetchReadings(month:number, date: number) : Promise<IReadingData>
+    fetchReadings(month:number, date: number) : Promise<IPassageDataItem>
 }
