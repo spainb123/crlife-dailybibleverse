@@ -5,14 +5,13 @@ import * as util from 'util';
 import * as cheerio from 'cheerio';
 import IModuleRequestHandler from "../../descriptors/IModuleRequestHandler";
 import Logger from '../../logger';
-import IReadingsProvider from '../../descriptors/IReadingsProvider';
+import IDailyDataProvider from '../../descriptors/IDailyDataProivder';
 
 const indexFile = path.join(__dirname, './../../../public/index.html');
-const readLocalFile: (pathname: string) => Promise<Buffer> = util.promisify(fs.readFile);
 
 export default class ClientService implements IModuleRequestHandler {
 
-    constructor(private readingsProvider: IReadingsProvider, private logger: Logger) {}
+    constructor(private dailyDataProvider: IDailyDataProvider, private logger: Logger) {}
 
     requestHandler(request: Request, response: Response): void {
 
@@ -35,7 +34,7 @@ export default class ClientService implements IModuleRequestHandler {
         }
 
         // Fetch Reading
-        this.readingsProvider.fetchReadings(month, date)
+        this.dailyDataProvider.fetchDailyData(month, date)
             .then(data => {
                 // Inject the data into the SSR entry in index and serve
                 this.logger.debug(this.logger.modules.MODULE_CLIENT, `Injecting and serving reading data into ${indexFile}`);

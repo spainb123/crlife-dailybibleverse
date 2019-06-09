@@ -8,6 +8,7 @@ interface ILOG_MODULE {
     MODULE_READINGS: string,
     MODULE_CLIENT: string,
     SERVICES_BASE_LOCAL_STORAGE: string,
+    SERVICES_DAILYCONTENT_LOCAL_STORAGE: string,
     SERVICES_NOTES_LOCAL_STORAGE: string,
     SERVICES_PASSAGES_LOCAL_STORAGE: string
 }
@@ -19,6 +20,7 @@ export const LOG_MODULE : ILOG_MODULE = {
     MODULE_READINGS: 'app:module:readings',
     MODULE_CLIENT: 'app:module:client',
     SERVICES_BASE_LOCAL_STORAGE: 'app:services:base:localstorage',
+    SERVICES_DAILYCONTENT_LOCAL_STORAGE: 'app:services:dailycontent:localstorage',
     SERVICES_NOTES_LOCAL_STORAGE: 'app:services:notes:localstorage',
     SERVICES_PASSAGES_LOCAL_STORAGE: 'app:services:passages:localstorage'
 }

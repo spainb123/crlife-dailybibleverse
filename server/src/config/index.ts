@@ -4,6 +4,7 @@ import loadMetadata from './metaLoader';
 import NotesStorage from '../services/noteStorage';
 import ReadingModule from '../modules/readings';
 import PassagesStorage from '../services/passageStorage';
+import DailyStorage from '../services/dailyStorage';
 import PassageModule from '../modules/passages';
 import ClientModule from '../modules/client';
 import Logger from '../logger';
@@ -18,9 +19,10 @@ export default function config(logger: Logger) {
 
    const passagesStorage = new PassagesStorage(logger);
    const notesStorage = new NotesStorage(logger);
+   const dailyStorage = new DailyStorage(logger);
    const passagesModule = new PassageModule(passagesStorage, metadata, logger);
-   const readingsModule = new ReadingModule(passagesStorage, notesStorage, metadata, logger)
-   const clientModule = new ClientModule(readingsModule, logger);
+   const readingsModule = new ReadingModule(passagesStorage, notesStorage, dailyStorage, metadata, logger);
+   const clientModule = new ClientModule(dailyStorage, logger);
 
    app.use('/public', express.static('public'))
 

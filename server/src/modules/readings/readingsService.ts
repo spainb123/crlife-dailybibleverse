@@ -7,16 +7,14 @@ import Logger from '../../logger';
 import INoteStorageService from '../../descriptors/INoteStorageService';
 import { NoteEntryType } from '../../descriptors/NoteEntryType';
 import { getNormalizedDates, getFullDate } from '../../helpers/dateHelper';
-import { Buffer } from 'buffer';
-import IPassageDataItem from '../../descriptors/IReadingData';
-import IReadingsProvider from '../../descriptors/IReadingsProvider';
+import IReadingData from '../../descriptors/IReadingData';
+import IDailyStorageService from '../../descriptors/IDailyStorageService';
 
 
 export interface ReadingRef {
     month: number,
     date: number
 }
-
 
 enum ContentType {
     passage,
@@ -30,11 +28,12 @@ interface FetchedData {
     body: string
 }
 
-export default class ReadingsService implements IModuleRequestHandler, IReadingsProvider
+export default class ReadingsService implements IModuleRequestHandler
 {
     constructor(
         private passageStorageService: IPassageStorageService,
         private noteStorageService: INoteStorageService,
+        private dailyStorageService: IDailyStorageService,
         private metadata: any,
         private logger: Logger
     ) {}
@@ -43,15 +42,21 @@ export default class ReadingsService implements IModuleRequestHandler, IReadings
         
         const month = parseInt(request.query.month);
         const date = parseInt(request.query.date);
+        const write = Boolean(request.query.write);
 
         this.fetchReadings(month, date).then(data =>
             {
+                if (write)
+                {
+                    this.dailyStorageService.writeDailyContent(month, date, data);
+                }
+
                 response.setHeader('Content-Type', 'application/json');
                 response.end(JSON.stringify(data));        
             })
     }
 
-    fetchReadings(month:number, date: number) : Promise<IPassageDataItem>
+    fetchReadings(month:number, date: number) : Promise<IReadingData>
     {
         const fetchers : Promise<FetchedData>[] = [];
         const stringDates = getNormalizedDates({ month, date });
@@ -127,9 +132,9 @@ export default class ReadingsService implements IModuleRequestHandler, IReadings
         }
     }
 
-    private buildResponse(fetchedDataCollection: FetchedData[], fullDate: string) : IPassageDataItem {
+    private buildResponse(fetchedDataCollection: FetchedData[], fullDate: string) : IReadingData {
 
-        const retval : IPassageDataItem = {
+        const retval : IReadingData = {
             fullDate,
             pass: {
                 ot: { heading: '', body: '' },
