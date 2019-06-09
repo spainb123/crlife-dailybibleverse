@@ -1,6 +1,8 @@
 import * as React from 'react';
 import IReadingData from '../descriptors/IReadingData';
 
+require('./App.css');
+
 export interface AppProps { data: IReadingData}
 
 export class App extends React.Component<AppProps, {}> {
@@ -10,7 +12,7 @@ export class App extends React.Component<AppProps, {}> {
         const data = this.props.data;
 
         return (
-            <div>
+            <div className='App'>
                 <div>Full Date: {data.fullDate}</div>
                 <h1>Old Testament Notes</h1>
                 <div dangerouslySetInnerHTML={{ __html: data.note.ot }}></div>

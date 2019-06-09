@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-
-//import { Hello } from "./components/Hello";
 import { App } from "./components/App";
 import ParseServerSideData from "./helpers/ServerSideDataRenderer";
+
+require('./index.css');
 
 const SSR_DATA = decodeData();
 
