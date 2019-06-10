@@ -4,7 +4,7 @@ import Logger from './logger';
 
 const logger = new Logger();
 
-const httpPort = normalizePort(process.env.PORT || 3000);
+const httpPort = normalizePort(process.env.PORT || 80);
 
 const app = config.default(logger);
 app.set("port", httpPort);
