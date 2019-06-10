@@ -3,6 +3,7 @@ app.config.json
 
 ## Azure deployment file
 .deployment
+ftp-creds.json
 
 /node_modules
 /public
