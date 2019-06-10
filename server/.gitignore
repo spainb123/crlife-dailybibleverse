@@ -1,6 +1,9 @@
 ## Application config
 app.config.json
 
+## Azure deployment file
+.deployment
+
 /node_modules
 /public
 /dist
