@@ -6,9 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -w",
-    "start": "cross-env DEBUG=app* nodemon ./dist/main.js",
-    "start:azure" : "cross-env DEBUG=app* cross-env _DAILY_AZURE=true nodemon ./dist/main.js",
-    "packclient": "node ./util/packclient.js"
+    "start": "cross-env DEBUG=app* cross-env PORT=3000 nodemon ./dist/main.js",
+    "start:azure" : "cross-env DEBUG=app* cross-env _DAILY_AZURE=true cross-env PORT=3000 nodemon ./dist/main.js",
+    "packclient": "node ./util/packclient.js",
+    "prod" : "tsc && node ./dist/main.js"
   },
   "author": "Ben Spain",
   "license": "ISC",
