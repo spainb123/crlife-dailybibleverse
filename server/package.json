@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -w",
     "start": "cross-env DEBUG=app* nodemon ./dist/main.js",
+    "start:azure" : "cross-env DEBUG=app* cross-env _DAILY_AZURE=true nodemon ./dist/main.js",
     "packclient": "node ./util/packclient.js"
   },
   "author": "Ben Spain",

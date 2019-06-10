@@ -5,6 +5,7 @@ import NotesStorage from '../services/noteStorage';
 import ReadingModule from '../modules/readings';
 import PassagesStorage from '../services/passageStorage';
 import DailyStorage from '../services/dailyStorage';
+import AzureDailyStorage from '../services/azureDailyStorage';
 import PassageModule from '../modules/passages';
 import DailyModule from '../modules/daily';
 import ClientModule from '../modules/client';
@@ -20,10 +21,13 @@ export default function config(logger: Logger) {
 
    const passagesStorage = new PassagesStorage(logger);
    const notesStorage = new NotesStorage(logger);
+   const azureDailyStorage = new AzureDailyStorage(logger);
    const dailyStorage = new DailyStorage(logger);
    const passagesModule = new PassageModule(passagesStorage, metadata, logger);
    const readingsModule = new ReadingModule(passagesStorage, notesStorage, dailyStorage, metadata, logger);
-   const dailyModule = new DailyModule(dailyStorage, logger);
+   const dailyModule = new DailyModule(
+      (process.env._DAILY_AZURE) ? azureDailyStorage : dailyStorage, 
+      logger);
    const clientModule = new ClientModule(dailyStorage, logger);
 
    app.use('/public', express.static('public'))

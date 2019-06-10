@@ -1,7 +1,6 @@
 import IModuleRequestHandler from "../../descriptors/IModuleRequestHandler";
 import IDailyDataProvider from "../../descriptors/IDailyDataProivder";
 import Logger from "../../logger";
-import { getNormalizedDates } from "../../helpers/dateHelper";
 
 export default class DailyService implements IModuleRequestHandler
 {

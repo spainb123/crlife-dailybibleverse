@@ -15,6 +15,12 @@ export function getFullDate(month: number, date: number) : string
     return `${monthName} ${day}, ${year}`;
 }
 
+export function getDailyDataFileName(month: number, date: number) : string
+{
+    const normalizedDates = getNormalizedDates({ month, date });
+    return `${normalizedDates.month}${normalizedDates.date}-daily.json`;
+}
+
 function getMonthName(month: number) : string
 {
     switch(month)

@@ -3,7 +3,7 @@ import IDailyStorageService from "../../descriptors/IDailyStorageService";
 import Logger from "../../logger";
 import IReadingData from "../../descriptors/IReadingData";
 import IDailyDataProvider from "../../descriptors/IDailyDataProivder";
-import { getNormalizedDates } from "../../helpers/dateHelper";
+import { getNormalizedDates, getDailyDataFileName } from "../../helpers/dateHelper";
 
 export default class LocalDataDailyStorage extends BaseLocalStorageService implements IDailyStorageService, IDailyDataProvider
 {
@@ -13,7 +13,7 @@ export default class LocalDataDailyStorage extends BaseLocalStorageService imple
 
     fetchDailyData(month: number, date: number): Promise<IReadingData> {
 
-        const fileName = this.getDailyFileName(month, date);
+        const fileName = getDailyDataFileName(month, date);
 
         this.logger.debug(this.logger.modules.SERVICES_DAILYCONTENT_LOCAL_STORAGE, `Reading daily content for month: ${month}, date: ${date}, from: ${fileName}`);
 
@@ -23,17 +23,10 @@ export default class LocalDataDailyStorage extends BaseLocalStorageService imple
 
     writeDailyContent(month: number, date: number, readingData: IReadingData): Promise<void> {
 
-        const fileName = this.getDailyFileName(month, date);
+        const fileName = getDailyDataFileName(month, date);
 
         this.logger.debug(this.logger.modules.SERVICES_DAILYCONTENT_LOCAL_STORAGE, `Writing daily content for month: ${month}, date: ${date} to ${fileName}`);
 
         return this.writeFile(fileName, JSON.stringify(readingData));
-    }
-
-    getDailyFileName(month: number, date: number)
-    {
-        const normalizedDates = getNormalizedDates({ month, date });
-        return `${normalizedDates.month}${normalizedDates.date}-daily.json`;
-
     }
 }
