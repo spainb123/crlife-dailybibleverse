@@ -10,7 +10,7 @@ export default class PortraitLayout extends React.Component
             <div>
                 <Container fluid={true} className="Portrait">
                     <Row noGutters={true}>
-                        <Col sm={12}>
+                        <Col>
                             <ReadingData /> 
                         </Col>
                     </Row>
