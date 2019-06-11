@@ -1,0 +1,45 @@
+{
+  "name": "crlife-daily",
+  "version": "1.0.0",
+  "description": "Crossroads Church Daily Bible Study",
+  "main": "dist/main.js",
+  "scripts": {
+    "start" : "node ./dist/main.js",
+    "dev" : "cross-env DEBUG=app* cross-env PORT=3000 nodemon ./dist/main.js",
+    "packclient": "node ./util/packclient.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bspain/crlife-dailybibleverse.git"
+  },
+  "keywords": [
+    "CRLife",
+    "Daily",
+    "Bible"
+  ],
+  "author": "Ben Spain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bspain/crlife-dailybibleverse/issues"
+  },
+  "homepage": "https://github.com/bspain/crlife-dailybibleverse#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.16.4",
+    "node-fetch": "^2.6.0",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.11",
+    "@types/debug": "^4.1.4",
+    "@types/express": "^4.16.1",
+    "@types/node": "^10.14.8",
+    "@types/node-fetch": "^2.3.4",
+    "@types/request": "^2.48.1",
+    "cross-env": "^5.2.0",
+    "ncp": "^2.0.0",
+    "nodemon": "^1.19.0",
+    "rimraf": "^2.6.3",
+    "typescript": "^3.4.5"
+  }
+}

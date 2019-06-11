@@ -5,8 +5,8 @@ const ncp = require('ncp').ncp;
 
 console.log('Starting packclient...');
 
-const client_indexpage = path.join(__dirname, '../../client/index.pack.html');
-const client_dist = path.join(__dirname, '../../client/dist');
+const client_indexpage = path.join(__dirname, '../client/index.pack.html');
+const client_dist = path.join(__dirname, '../client/dist');
 const server_public = path.join(__dirname, '../public/');
 
 console.log(`Client Index Page: ${client_indexpage}`);
