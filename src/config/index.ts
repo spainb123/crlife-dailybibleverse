@@ -20,6 +20,7 @@ export default function config(logger: Logger) {
 
    const metadata = loadMetadata();
 
+
    const passagesStorage = new PassagesStorage(logger);
    const notesStorage = new NotesStorage(logger);
    const azureDailyStorage = new AzureDailyStorage(logger);
@@ -27,10 +28,11 @@ export default function config(logger: Logger) {
    const healthModule = new HealthModule(logger);
    const passagesModule = new PassageModule(passagesStorage, metadata, logger);
    const readingsModule = new ReadingModule(passagesStorage, notesStorage, dailyStorage, metadata, logger);
-   const dailyModule = new DailyModule(
-      (process.env._DAILY_AZURE) ? azureDailyStorage : dailyStorage, 
-      logger);
-   const clientModule = new ClientModule(dailyStorage, logger);
+
+   const dailyDataProvider = (process.env._DAILY_AZURE) ? azureDailyStorage : dailyStorage;
+
+   const dailyModule = new DailyModule(dailyDataProvider, logger);
+   const clientModule = new ClientModule(dailyDataProvider, logger);
 
    app.use('/public', express.static('public'))
 
