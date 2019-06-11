@@ -4,6 +4,7 @@
   "description": "Crossroads Church Daily Bible Study",
   "main": "dist/main.js",
   "scripts": {
+    "build" : "tsc",
     "start" : "node ./dist/main.js",
     "dev" : "cross-env DEBUG=app* cross-env PORT=3000 nodemon ./dist/main.js",
     "packclient": "node ./util/packclient.js"
