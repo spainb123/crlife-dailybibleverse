@@ -4,17 +4,16 @@ import { Selection, IStore } from '../store/Models';
 import { connect } from 'react-redux';
 
 import './ReadingData.scss';
+import './nlt-api.css';
 
-interface IReadingViewProps
-{
+interface IReadingViewProps {
         selected: Selection,
         data: IReadingData
 }
 
 class ReadingView extends React.Component<IReadingViewProps>
 {
-        render()
-        {
+        render() {
                 console.log(`ReadingView render, selected: ${this.props.selected}`);
                 const data = this.props.data;
                 return (
@@ -40,27 +39,22 @@ class ReadingView extends React.Component<IReadingViewProps>
                 );
         }
 
-        componentDidMount()
-        {
+        componentDidMount() {
                 console.log(`ReadingView componentDidMount, selected: ${this.props.selected}`);
                 this.scrollToSelection();
         }
 
-        componentDidUpdate()
-        {
+        componentDidUpdate() {
                 console.log(`ReadingView componentDidUpdate, selected: ${this.props.selected}`);
                 this.scrollToSelection();
         }
 
-        scrollToSelection()
-        {
+        scrollToSelection() {
                 document.getElementById(this.getElementIdFromCurrentSelection()).scrollIntoView();
         }
 
-        getElementIdFromCurrentSelection()
-        {
-                switch(this.props.selected)
-                {
+        getElementIdFromCurrentSelection() {
+                switch (this.props.selected) {
                         case Selection.NotesNT:
                                 return 'NTNOTE';
                         case Selection.NotesFS:
@@ -81,8 +75,7 @@ class ReadingView extends React.Component<IReadingViewProps>
 
 }
 
-function mapStateToProps(state: IStore) : IReadingViewProps
-{
+function mapStateToProps(state: IStore): IReadingViewProps {
         return {
                 selected: state.selection,
                 data: state.data
