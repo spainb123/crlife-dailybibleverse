@@ -4,9 +4,9 @@
   "description": "Crossroads Church Daily Bible Study",
   "main": "dist/main.js",
   "scripts": {
-    "prestart" : "tsc",
-    "start" : "node ./dist/main.js",
-    "dev" : "cross-env DEBUG=app* cross-env PORT=3000 nodemon ./dist/main.js",
+    "prestart": "tsc",
+    "start": "node ./dist/main.js",
+    "dev": "cross-env DEBUG=app* cross-env PORT=3000 nodemon ./dist/main.js",
     "packclient": "node ./util/packclient.js"
   },
   "repository": {
@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/bspain/crlife-dailybibleverse#readme",
   "dependencies": {
+    "@azure/storage-blob": "^10.3.0",
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.16.4",
     "node-fetch": "^2.6.0",
