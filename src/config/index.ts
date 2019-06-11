@@ -6,6 +6,7 @@ import ReadingModule from '../modules/readings';
 import PassagesStorage from '../services/passageStorage';
 import DailyStorage from '../services/dailyStorage';
 import AzureDailyStorage from '../services/azureDailyStorage';
+import HealthModule from '../modules/health';
 import PassageModule from '../modules/passages';
 import DailyModule from '../modules/daily';
 import ClientModule from '../modules/client';
@@ -23,6 +24,7 @@ export default function config(logger: Logger) {
    const notesStorage = new NotesStorage(logger);
    const azureDailyStorage = new AzureDailyStorage(logger);
    const dailyStorage = new DailyStorage(logger);
+   const healthModule = new HealthModule(logger);
    const passagesModule = new PassageModule(passagesStorage, metadata, logger);
    const readingsModule = new ReadingModule(passagesStorage, notesStorage, dailyStorage, metadata, logger);
    const dailyModule = new DailyModule(
@@ -36,10 +38,7 @@ export default function config(logger: Logger) {
 
    app.get('/daily', dailyModule.requestHandler.bind(dailyModule))
 
-   app.get('/health', (req, res) => {
-      logger.debug(logger.modules.SERVER, 'Health check request')
-      res.send('OK: CRLife-DBV TS Server')
-   })
+   app.get('/health', healthModule.requestHandler.bind(healthModule))
 
    app.get('/passages', passagesModule.requestHandler.bind(passagesModule))
 
