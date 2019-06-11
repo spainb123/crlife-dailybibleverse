@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { Selection } from '../store/Models';
 import { setSelection } from '../store/Actions';
 import { connect } from 'react-redux';
+import FooterButton from './FooterButton';
 
 interface IFooterActions
 {
@@ -35,24 +36,40 @@ class Footer extends React.Component<IFooterActions>
     render() {
         return (
             <Container fluid={true} className="Footer">
-                <Row noGutters={true}>
-                    <Col sm={6}>Study</Col>
-                    <Col sm={6}>Reading</Col>
+                <Row className="align-items-center" noGutters={true}>
+                    <Col className="align-self-center">Study</Col>
+                    <Col className="align-self-center">Reading</Col>
                 </Row>
-                <Row noGutters={true}>
-                    <Col sm={6}>
-                        <Row>
-                            <Col sm={4} onClick={this.onFooterButtonOTNoteClicked}>OT</Col>
-                            <Col sm={4} onClick={this.onFooterButtonNTNoteClicked}>NT</Col>
-                            <Col sm={4} onClick={this.onFooterButtonFSNoteClicked}>More</Col>
+                <Row className="align-items-center" noGutters={true}>
+                    <Col>
+                        <Row className="align-items-center">
+                            <Col className="align-self-center" onClick={this.onFooterButtonOTNoteClicked}>
+                                <FooterButton>OT</FooterButton>
+                            </Col>
+                            <Col className="align-self-center" onClick={this.onFooterButtonNTNoteClicked}>
+                                <FooterButton>NT</FooterButton>
+                            </Col>
+                            <Col className="align-self-center" onClick={this.onFooterButtonFSNoteClicked}>
+                                <FooterButton>FS</FooterButton>
+                            </Col>
                         </Row>
                     </Col>
-                    <Col sm={6}>
-                        <Row>
-                            <Col sm={3} onClick={this.onFooterButtonOTPassClicked}>OT</Col>
-                            <Col sm={3} onClick={this.onFooterButtonNTPassClicked}>NT</Col>
-                            <Col sm={3} onClick={this.onFooterButtonPSPassClicked}>Psalm</Col>
-                            <Col sm={3} onClick={this.onFooterButtonPRPassClicked}>Proverbs</Col>
+                    <Col>
+                        <Row className="align-items-center">
+                            <Col className="align-self-center" onClick={this.onFooterButtonOTPassClicked}>
+                                <FooterButton>OT</FooterButton>
+                            </Col>
+                            <Col className="align-self-center" onClick={this.onFooterButtonNTPassClicked}>
+                                <FooterButton>NT</FooterButton>
+                            </Col>
+                        </Row>
+                        <Row className="align-items-center">
+                            <Col className="align-self-center" onClick={this.onFooterButtonPSPassClicked}>
+                                <FooterButton>Ps</FooterButton>
+                            </Col>
+                            <Col className="align-self-center" onClick={this.onFooterButtonPRPassClicked}>
+                                <FooterButton>Pr</FooterButton>
+                            </Col>
                         </Row>
                     </Col>
                 </Row>

@@ -21,9 +21,14 @@ code {
 {
   position: fixed;
   bottom: 0px;
-  height: 120px;
-  line-height: 60px;
+  height: 90px;
+  line-height: 30px;
   background-color: bisque;
+
+  .FooterButton {
+    border: 2px solid red 2px;
+    font-size: small;
+  }
 }
 
 #READBUFFER
