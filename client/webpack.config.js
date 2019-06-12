@@ -28,7 +28,11 @@ module.exports = {
             {
                 test: /\.(s*)css$/,
                 loader: ['style-loader', 'css-loader', 'sass-loader']
-            }, 
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-inline-loader'
+            } 
             // {
             //     test: /\.css$/,
             //     loader: 'css-loader',

@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { Selection } from '../store/Models';
 import { setSelection } from '../store/Actions';
 import { connect } from 'react-redux';
-import Chevron from './Chevron';
+import Chevron from './Chevron/Chevron';
 
 interface IFooterActions
 {

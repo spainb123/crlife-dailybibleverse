@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import Footer from './Footer';
 import ReadingData from './ReadingData';
-import Chevron from './Chevron';
+import Chevron from './Chevron/Chevron';
 
 export default class PortraitLayout extends React.Component
 {
@@ -16,9 +16,7 @@ export default class PortraitLayout extends React.Component
                         </Col>
                     </Row>
                 </Container>
-                <div className="chevron-container">
-                    <Chevron />
-                </div>
+                <Chevron />
             </div>);
     }
 }
