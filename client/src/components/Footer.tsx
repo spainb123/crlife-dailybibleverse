@@ -36,7 +36,7 @@ class Footer extends React.Component<{ expanded: boolean} & IFooterActions>
                     <Row>
                         <FooterButtonContainer 
                             onClick={this.onFooterButtonContainerClicked}
-                            selectionOption={Selection.NotesNT}>Further Study</FooterButtonContainer>
+                            selectionOption={Selection.NotesFS}>Further Study</FooterButtonContainer>
                     </Row>
                     <Row>
                         <FooterButtonContainer 

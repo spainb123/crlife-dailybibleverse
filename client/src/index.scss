@@ -34,16 +34,17 @@ code {
   bottom: 0px;
   width: 100%;
   background-color: bisque;
-
-  div {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  
   .FooterButton {
-    border: 2px solid red;
+    border: 2px solid orange;
+    border-radius: 6px;
     font-size: small;
-  }
+    margin-top: 5px;
+    height: 32px;
+    line-height: 26px;
+   }
 }
 
 .collapsed 
@@ -58,7 +59,8 @@ code {
 
 .expanded 
 {
-  height: 260px;
+  height: 316px;
+  padding-top: 10px;
 
   .Footer
   {
