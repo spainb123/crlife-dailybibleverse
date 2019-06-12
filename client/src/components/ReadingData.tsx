@@ -23,11 +23,13 @@ class ReadingView extends React.Component<IReadingViewProps>
                                         <h2>{data.fullDate}</h2>
                                 </div>
                                 <div className="content-break" />
-                                <div id={'OTNOTE'} className="noteContent" dangerouslySetInnerHTML={{ __html: data.note.ot }}></div>
+                                <div id={'OTNOTE'} className="noteHeader">Old Testament Study</div>
+                                <div className="noteContent" dangerouslySetInnerHTML={{ __html: data.note.ot }}></div>
                                 <div className="content-break" />
                                 <div id={'OTBODY'} className="nltContent" dangerouslySetInnerHTML={{ __html: data.pass.ot.body }}></div>
                                 <div className="content-break" />
-                                <div id={'NTNOTE'} className="noteContent" dangerouslySetInnerHTML={{ __html: data.note.nt }}></div>
+                                <div id={'NTNOTE'} className="noteHeader">New Testament Study</div>
+                                <div className="noteContent" dangerouslySetInnerHTML={{ __html: data.note.nt }}></div>
                                 <div className="content-break" />
                                 <div id={'NTBODY'} className="nltContent" dangerouslySetInnerHTML={{ __html: data.pass.nt.body }}></div>
                                 <div className="content-break" />
@@ -35,7 +37,8 @@ class ReadingView extends React.Component<IReadingViewProps>
                                 <div className="content-break" />
                                 <div id={'PRBODY'} className="nltContent" dangerouslySetInnerHTML={{ __html: data.pass.pr.body }}></div>
                                 <div className="content-break" />
-                                <div id={'FSNOTE'} className="noteContent" dangerouslySetInnerHTML={{ __html: data.note.fs }}></div>
+                                <div id={'FSNOTE'} className="noteHeader">Further Study</div>
+                                <div className="noteContent" dangerouslySetInnerHTML={{ __html: data.note.fs }}></div>
                                 <div className="content-last-break" />
                         </div>
                 );
