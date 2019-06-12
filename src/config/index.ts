@@ -36,7 +36,7 @@ export default function config(logger: Logger) {
 
    app.use('/public', express.static('public'))
 
-   app.get('/client', clientModule.requestHandler.bind(clientModule))
+   app.get('/', clientModule.requestHandler.bind(clientModule))
 
    app.get('/daily', dailyModule.requestHandler.bind(dailyModule))
 
