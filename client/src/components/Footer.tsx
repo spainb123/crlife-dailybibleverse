@@ -39,41 +39,39 @@ class Footer extends React.Component<{ expanded: boolean} & IFooterActions>
         return (
             <div className={`OuterFooter ${expandedClass}`}>
                 <Container fluid={true} className="Footer">
-                    <Row className="align-items-center">
-                        <Col className="align-self-center"><div className="text-center">Study</div></Col>
-                        <Col className="align-self-center"><div className="text-center">Reading</div></Col>
-                    </Row>
-                    <Row className="align-items-center">
-                        <Col>
-                            <Row className="align-items-center">
-                                <Col className="align-self-center" onClick={this.onFooterButtonOTNoteClicked}>
-                                    <FooterButton>OT</FooterButton>
-                                </Col>
-                                <Col className="align-self-center" onClick={this.onFooterButtonNTNoteClicked}>
-                                    <FooterButton>NT</FooterButton>
-                                </Col>
-                                <Col className="align-self-center" onClick={this.onFooterButtonFSNoteClicked}>
-                                    <FooterButton>FS</FooterButton>
-                                </Col>
-                            </Row>
+                    <Row>
+                        <Col onClick={this.onFooterButtonOTNoteClicked}>
+                            <FooterButton>Old Testament Study</FooterButton>
                         </Col>
-                        <Col>
-                            <Row className="align-items-center">
-                                <Col className="align-self-center" onClick={this.onFooterButtonOTPassClicked}>
-                                    <FooterButton>OT</FooterButton>
-                                </Col>
-                                <Col className="align-self-center" onClick={this.onFooterButtonNTPassClicked}>
-                                    <FooterButton>NT</FooterButton>
-                                </Col>
-                            </Row>
-                            <Row className="align-items-center">
-                                <Col className="align-self-center" onClick={this.onFooterButtonPSPassClicked}>
-                                    <FooterButton>Ps</FooterButton>
-                                </Col>
-                                <Col className="align-self-center" onClick={this.onFooterButtonPRPassClicked}>
-                                    <FooterButton>Pr</FooterButton>
-                                </Col>
-                            </Row>
+                    </Row>
+                    <Row>
+                        <Col onClick={this.onFooterButtonNTNoteClicked}>
+                            <FooterButton>New Testament Study</FooterButton>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col onClick={this.onFooterButtonFSNoteClicked}>
+                            <FooterButton>Further Study</FooterButton>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col onClick={this.onFooterButtonOTPassClicked}>
+                            <FooterButton>Old Testament Passages</FooterButton>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col onClick={this.onFooterButtonNTPassClicked}>
+                            <FooterButton>New Testament Passages</FooterButton>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col onClick={this.onFooterButtonPSPassClicked}>
+                            <FooterButton>Psalms</FooterButton>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col onClick={this.onFooterButtonPRPassClicked}>
+                            <FooterButton>Proverbs</FooterButton>
                         </Col>
                     </Row>
                 </Container>
