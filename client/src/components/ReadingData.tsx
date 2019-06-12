@@ -18,23 +18,25 @@ class ReadingView extends React.Component<IReadingViewProps>
                 const data = this.props.data;
                 return (
                         <div className='ReadingData'>
-                                <div>Full Date: {data.fullDate}</div>
+                                <div className="Banner text-center">
+                                        <h1>Daily Bible Reading</h1>
+                                        <h2>{data.fullDate}</h2>
+                                </div>
+                                <div className="content-break" />
                                 <div id={'OTNOTE'} className="noteContent" dangerouslySetInnerHTML={{ __html: data.note.ot }}></div>
-                                <h1 id={'OTHEAD'}>Old Testament Reading</h1>
-                                <h2>{data.pass.ot.heading}</h2>
+                                <div className="content-break" />
                                 <div id={'OTBODY'} className="nltContent" dangerouslySetInnerHTML={{ __html: data.pass.ot.body }}></div>
+                                <div className="content-break" />
                                 <div id={'NTNOTE'} className="noteContent" dangerouslySetInnerHTML={{ __html: data.note.nt }}></div>
-                                <h1 id={'NTHEAD'}>New Testament Reading</h1>
-                                <h2>{data.pass.nt.heading}</h2>
+                                <div className="content-break" />
                                 <div id={'NTBODY'} className="nltContent" dangerouslySetInnerHTML={{ __html: data.pass.nt.body }}></div>
-                                <h1 id={'PSHEAD'}>Psalms Reading</h1>
-                                <h2>{data.pass.ps.heading}</h2>
+                                <div className="content-break" />
                                 <div id={'PSBODY'} className="nltContent" dangerouslySetInnerHTML={{ __html: data.pass.ps.body }}></div>
-                                <h1 id={'PRHEAD'}>Proverbs Reading</h1>
-                                <h2>{data.pass.pr.heading}</h2>
+                                <div className="content-break" />
                                 <div id={'PRBODY'} className="nltContent" dangerouslySetInnerHTML={{ __html: data.pass.pr.body }}></div>
+                                <div className="content-break" />
                                 <div id={'FSNOTE'} className="noteContent" dangerouslySetInnerHTML={{ __html: data.note.fs }}></div>
-                                <div id={'READBUFFER'}></div>
+                                <div className="content-last-break" />
                         </div>
                 );
         }
@@ -60,13 +62,13 @@ class ReadingView extends React.Component<IReadingViewProps>
                         case Selection.NotesFS:
                                 return 'FSNOTE';
                         case Selection.PassOT:
-                                return 'OTHEAD';
+                                return 'OTBODY';
                         case Selection.PassNT:
-                                return 'NTHEAD';
+                                return 'NTBODY';
                         case Selection.PassPS:
-                                return 'PSHEAD';
+                                return 'PSBODY';
                         case Selection.PassPr:
-                                return 'PRHEAD';
+                                return 'PRBODY';
                         case Selection.NotesOT:
                         default:
                                 return 'OTNOTE';
