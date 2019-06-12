@@ -15,4 +15,5 @@ export interface IStore
 {
     data: IReadingData
     selection: Selection
+    footerExpanded: boolean
 }

@@ -2,12 +2,19 @@ import * as React from 'react'
 import './Chevron.scss'
 import chevronUpSvg from './chevron-up.svg';
 
-const Chevron: React.SFC<{ direction: 'up' | 'down' }> = (props) => {
+const Chevron: React.SFC<{ direction: 'up' | 'down', onClick() : void }> = (props) => {
     
     const classValue = `chevron ${props.direction}`;
 
+    const onClickHander = () => {
+        props.onClick();
+    }
+
     return (
-        <div className={classValue} dangerouslySetInnerHTML={{__html: chevronUpSvg}} />
+        <div 
+            className={classValue} 
+            onClick={onClickHander}
+            dangerouslySetInnerHTML={{__html: chevronUpSvg}} />
         );
 }
 

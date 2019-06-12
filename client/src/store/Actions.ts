@@ -3,6 +3,7 @@ import { Selection } from "./Models";
 
 export const SET_SELECTION = 'SET_SELECTION';
 export const LOAD_DATA_SUCCESS = 'LOAD_DATA_SUCCESS';
+export const TOGGLE_FOOTER = 'TOGGLE_FOOTER';
 
 export interface IAction
 {
@@ -27,4 +28,9 @@ export function setSelection(selection: Selection)
 export function loadDataSuccess(data: IReadingData)
 {
     return { type: LOAD_DATA_SUCCESS, data }
+}
+
+export function toggleFooter()
+{
+    return { type: TOGGLE_FOOTER }
 }

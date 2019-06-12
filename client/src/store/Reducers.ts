@@ -1,6 +1,6 @@
 import { IStore } from "./Models";
 import { initialState } from "./Initial";
-import { ISetSelectionAction, ILoadDataSuccessAction, SET_SELECTION, LOAD_DATA_SUCCESS } from "./Actions";
+import { ISetSelectionAction, ILoadDataSuccessAction, SET_SELECTION, LOAD_DATA_SUCCESS, TOGGLE_FOOTER } from "./Actions";
 
 export default function rootReducer(
     state: IStore = initialState,
@@ -12,6 +12,8 @@ export default function rootReducer(
             return {...state, ...{ selection: (<ISetSelectionAction>action).selection }};
         case LOAD_DATA_SUCCESS:
             return {...state, ...{ data: (<ILoadDataSuccessAction>action).data }};
+        case TOGGLE_FOOTER:
+            return {...state, ...{ footerExpanded: !state.footerExpanded }};
         default:
             return state;
     }

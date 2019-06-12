@@ -31,5 +31,6 @@ export const initialState : IStore = {
             nt: '',
             fs: ''
         }
-    }
+    },
+    footerExpanded: false
 }
