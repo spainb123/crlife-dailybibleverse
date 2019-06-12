@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { Selection } from '../store/Models';
 import { setSelection } from '../store/Actions';
 import { connect } from 'react-redux';
-import FooterButton from './FooterButton';
+import Chevron from './Chevron';
 
 interface IFooterActions
 {
@@ -36,11 +36,11 @@ class Footer extends React.Component<IFooterActions>
     render() {
         return (
             <Container fluid={true} className="Footer">
-                <Row className="align-items-center" noGutters={true}>
-                    <Col className="align-self-center">Study</Col>
-                    <Col className="align-self-center">Reading</Col>
+                <Row className="align-items-center">
+                    <Col className="align-self-center"><div className="text-center">Study</div></Col>
+                    <Col className="align-self-center"><div className="text-center">Reading</div></Col>
                 </Row>
-                <Row className="align-items-center" noGutters={true}>
+                <Row className="align-items-center">
                     <Col>
                         <Row className="align-items-center">
                             <Col className="align-self-center" onClick={this.onFooterButtonOTNoteClicked}>
@@ -83,6 +83,10 @@ function mapDispatchToProps(dispatch: any) : IFooterActions
     return {
         makeSelection: (selection: Selection) => { dispatch(setSelection(selection))}
     }
+}
+
+const FooterButton: React.SFC<{ children: string }> = (props) => {
+    return <div className="FooterButton text-center">{props.children}</div>;
 }
 
 export default connect(null, mapDispatchToProps)(Footer);

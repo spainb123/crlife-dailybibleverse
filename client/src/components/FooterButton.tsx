@@ -5,7 +5,7 @@ interface FooterButtonProps {
 }
 
 const FooterButton: React.SFC<FooterButtonProps> = (props) => {
-    return <span className="FooterButton">{props.children}</span>;
+    return <div className="FooterButton text-center">{props.children}</div>;
 }
 
 export default FooterButton;
