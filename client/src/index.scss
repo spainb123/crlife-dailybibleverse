@@ -31,6 +31,7 @@ code {
 .OuterFooter
 {
   position: fixed;
+  padding-top: 18px;
   bottom: 0px;
   width: 100%;
   background-color: bisque;
@@ -50,20 +51,11 @@ code {
 .collapsed 
 {
   height: 23px;
-
-  .Footer 
-  {
-    display: none;
-  }  
+  transition: height 500ms ease 0ms; 
 }
 
 .expanded 
 {
-  height: 316px;
-  padding-top: 10px;
-
-  .Footer
-  {
-    display: visible;
-  }
+  height: 324px;
+  transition: height 500ms ease 0ms; 
 }
