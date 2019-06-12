@@ -5,11 +5,16 @@ import { setSelection } from '../store/Actions';
 import { connect } from 'react-redux';
 import FooterButtonContainer from './FooterButtonContainer';
 
+interface IFooterProps
+{
+    expanded: boolean, 
+    furtherStudy: boolean
+}
 interface IFooterActions
 {
     makeSelection(footerSelection : Selection) : void
 }
-class Footer extends React.Component<{ expanded: boolean} & IFooterActions>
+class Footer extends React.Component<IFooterProps & IFooterActions>
 {
     onFooterButtonContainerClicked = (selection: Selection) => {
         console.log(`onFooterButtonContainerClicked: ${selection}`);
@@ -36,11 +41,6 @@ class Footer extends React.Component<{ expanded: boolean} & IFooterActions>
                     <Row>
                         <FooterButtonContainer 
                             onClick={this.onFooterButtonContainerClicked}
-                            selectionOption={Selection.NotesFS}>Further Study</FooterButtonContainer>
-                    </Row>
-                    <Row>
-                        <FooterButtonContainer 
-                            onClick={this.onFooterButtonContainerClicked}
                             selectionOption={Selection.PassOT}>Old Testament Passages</FooterButtonContainer>
                     </Row>
                     <Row>
@@ -58,6 +58,13 @@ class Footer extends React.Component<{ expanded: boolean} & IFooterActions>
                             onClick={this.onFooterButtonContainerClicked}
                             selectionOption={Selection.PassPr}>Proverbs</FooterButtonContainer>
                     </Row>
+                    {this.props.furtherStudy &&
+                    <Row>
+                        <FooterButtonContainer 
+                            onClick={this.onFooterButtonContainerClicked}
+                            selectionOption={Selection.NotesFS}>Further Study</FooterButtonContainer>
+                    </Row>
+                    }
                 </Container>
             </div>
         )
@@ -69,10 +76,6 @@ function mapDispatchToProps(dispatch: any) : IFooterActions
     return {
         makeSelection: (selection: Selection) => { dispatch(setSelection(selection))}
     }
-}
-
-const FooterButton: React.SFC<{ children: string }> = (props) => {
-    return <div className="FooterButton text-center">{props.children}</div>;
 }
 
 export default connect(null, mapDispatchToProps)(Footer);

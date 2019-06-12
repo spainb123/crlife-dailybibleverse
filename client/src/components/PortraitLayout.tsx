@@ -9,7 +9,8 @@ import { toggleFooter } from '../store/Actions';
 
 interface IPortraitLayoutProps
 {
-    expanded: boolean
+    expanded: boolean,
+    furtherStudy: boolean
 }
 
 interface IPortraitLayoutActions
@@ -33,7 +34,9 @@ class PortraitLayout extends React.Component<IPortraitLayoutProps & IPortraitLay
                         </Col>
                     </Row>
                 </Container>
-                <Footer expanded={this.props.expanded}/>
+                <Footer 
+                    expanded={this.props.expanded}
+                    furtherStudy={this.props.furtherStudy} />
                 <Chevron 
                     direction={(this.props.expanded) ? 'down' : 'up'}
                     onClick={this.onChevronClicked} />
@@ -44,7 +47,8 @@ class PortraitLayout extends React.Component<IPortraitLayoutProps & IPortraitLay
 function mapStateToProps(state: IStore) : IPortraitLayoutProps
 {
     return {
-        expanded: state.footerExpanded
+        expanded: state.footerExpanded,
+        furtherStudy: state.data.note.fs.length > 0
     }
 }
 
