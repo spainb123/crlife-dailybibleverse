@@ -740,7 +740,7 @@ exports.push([module.i, ".chevron .foreground {\n  fill: orange; }\n\n.chevron .
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".ReadingData .noteContent h1 {\n  color: red; }\n\n.ReadingData .nltContent h2 {\n  color: purple; }\n", ""]);
+exports.push([module.i, ".ReadingData .Banner {\n  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }\n  .ReadingData .Banner h1 {\n    font-size: 2.2rem; }\n  .ReadingData .Banner h2 {\n    font-size: 1.8rem; }\n\n.ReadingData .noteContent h1 {\n  font-size: 2rem;\n  font-family: serif;\n  color: red; }\n\n.ReadingData .nltContent h2 {\n  color: orangered; }\n\n.ReadingData .content-break {\n  height: 60px; }\n\n.ReadingData .content-last-break {\n  height: 240px; }\n", ""]);
 
 
 
@@ -770,7 +770,7 @@ exports.push([module.i, "div.NLT {\n  font-family: serif; }\n\ndiv.NLT .text-cri
 
 exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "body {\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\r 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\r sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\nh1 {\n  color: blue; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\r monospace; }\n\n.Portrait .chevron {\n  text-align: center;\n  position: fixed;\n  bottom: 0px;\n  height: 38px;\n  width: 100%;\n  padding-bottom: 6px; }\n  .Portrait .chevron svg {\n    height: 100%; }\n\n.OuterFooter {\n  position: fixed;\n  bottom: 0px;\n  width: 100%;\n  background-color: bisque; }\n  .OuterFooter div {\n    padding-left: 5px;\n    padding-right: 5px; }\n  .OuterFooter .FooterButton {\n    border: 2px solid red;\n    font-size: small; }\n\n.collapsed {\n  height: 23px; }\n  .collapsed .Footer {\n    display: none; }\n\n.expanded {\n  height: 260px; }\n  .expanded .Footer {\n    display: visible; }\n\n#READBUFFER {\n  height: 2200px; }\n", ""]);
+exports.push([module.i, "body {\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\r 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\r sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\r monospace; }\n\n.Portrait .chevron {\n  text-align: center;\n  position: fixed;\n  bottom: 0px;\n  height: 38px;\n  width: 100%;\n  padding-bottom: 6px; }\n  .Portrait .chevron svg {\n    height: 100%; }\n\n.OuterFooter {\n  position: fixed;\n  bottom: 0px;\n  width: 100%;\n  background-color: bisque;\n  border-top-left-radius: 6px;\n  border-top-right-radius: 6px; }\n  .OuterFooter .FooterButton {\n    border: 2px solid orange;\n    border-radius: 6px;\n    font-size: small;\n    margin-top: 5px;\n    height: 32px;\n    line-height: 26px; }\n\n.collapsed {\n  height: 23px; }\n  .collapsed .Footer {\n    display: none; }\n\n.expanded {\n  height: 316px;\n  padding-top: 10px; }\n  .expanded .Footer {\n    display: visible; }\n", ""]);
 
 
 
@@ -18742,6 +18742,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_Models__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/Models */ "./src/store/Models.ts");
 /* harmony import */ var _store_Actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/Actions */ "./src/store/Actions.ts");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./FooterButtonContainer */ "./src/components/FooterButtonContainer.tsx");
+
 
 
 
@@ -18750,26 +18752,9 @@ __webpack_require__.r(__webpack_exports__);
 class Footer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     constructor() {
         super(...arguments);
-        this.onFooterButtonOTPassClicked = () => {
-            this.props.makeSelection(_store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].PassOT);
-        };
-        this.onFooterButtonNTPassClicked = () => {
-            this.props.makeSelection(_store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].PassNT);
-        };
-        this.onFooterButtonPSPassClicked = () => {
-            this.props.makeSelection(_store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].PassPS);
-        };
-        this.onFooterButtonPRPassClicked = () => {
-            this.props.makeSelection(_store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].PassPr);
-        };
-        this.onFooterButtonOTNoteClicked = () => {
-            this.props.makeSelection(_store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].NotesOT);
-        };
-        this.onFooterButtonNTNoteClicked = () => {
-            this.props.makeSelection(_store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].NotesNT);
-        };
-        this.onFooterButtonFSNoteClicked = () => {
-            this.props.makeSelection(_store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].NotesFS);
+        this.onFooterButtonContainerClicked = (selection) => {
+            console.log(`onFooterButtonContainerClicked: ${selection}`);
+            this.props.makeSelection(selection);
         };
     }
     render() {
@@ -18777,26 +18762,19 @@ class Footer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: `OuterFooter ${expandedClass}` },
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Container"], { fluid: true, className: "Footer" },
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null,
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], { onClick: this.onFooterButtonOTNoteClicked },
-                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](FooterButton, null, "Old Testament Study"))),
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onFooterButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].NotesOT }, "Old Testament Study")),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null,
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], { onClick: this.onFooterButtonNTNoteClicked },
-                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](FooterButton, null, "New Testament Study"))),
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onFooterButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].NotesNT }, "New Testament Study")),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null,
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], { onClick: this.onFooterButtonFSNoteClicked },
-                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](FooterButton, null, "Further Study"))),
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onFooterButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].NotesFS }, "Further Study")),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null,
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], { onClick: this.onFooterButtonOTPassClicked },
-                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](FooterButton, null, "Old Testament Passages"))),
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onFooterButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].PassOT }, "Old Testament Passages")),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null,
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], { onClick: this.onFooterButtonNTPassClicked },
-                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](FooterButton, null, "New Testament Passages"))),
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onFooterButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].PassNT }, "New Testament Passages")),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null,
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], { onClick: this.onFooterButtonPSPassClicked },
-                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](FooterButton, null, "Psalms"))),
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onFooterButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].PassPS }, "Psalms")),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null,
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], { onClick: this.onFooterButtonPRPassClicked },
-                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](FooterButton, null, "Proverbs"))))));
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onFooterButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].PassPr }, "Proverbs")))));
     }
 }
 function mapDispatchToProps(dispatch) {
@@ -18808,6 +18786,54 @@ const FooterButton = (props) => {
     return react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "FooterButton text-center" }, props.children);
 };
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(null, mapDispatchToProps)(Footer));
+
+
+/***/ }),
+
+/***/ "./src/components/FooterButton.tsx":
+/*!*****************************************!*\
+  !*** ./src/components/FooterButton.tsx ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const FooterButton = (props) => {
+    return react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "FooterButton text-center" }, props.children);
+};
+/* harmony default export */ __webpack_exports__["default"] = (FooterButton);
+
+
+/***/ }),
+
+/***/ "./src/components/FooterButtonContainer.tsx":
+/*!**************************************************!*\
+  !*** ./src/components/FooterButtonContainer.tsx ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _FooterButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FooterButton */ "./src/components/FooterButton.tsx");
+
+
+
+const FooterButtonContainer = (props) => {
+    const handleClick = () => {
+        props.onClick(props.selectionOption);
+    };
+    return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], { onClick: handleClick },
+        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButton__WEBPACK_IMPORTED_MODULE_2__["default"], null, props.children));
+};
+/* harmony default export */ __webpack_exports__["default"] = (FooterButtonContainer);
 
 
 /***/ }),
@@ -18925,25 +18951,24 @@ class ReadingView extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         console.log(`ReadingView render, selected: ${this.props.selected}`);
         const data = this.props.data;
         return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: 'ReadingData' },
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null,
-                "Full Date: ",
-                data.fullDate),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "Banner text-center" },
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h1", null, "Daily Bible Reading"),
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h2", null, data.fullDate)),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "content-break" }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { id: 'OTNOTE', className: "noteContent", dangerouslySetInnerHTML: { __html: data.note.ot } }),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h1", { id: 'OTHEAD' }, "Old Testament Reading"),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h2", null, data.pass.ot.heading),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "content-break" }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { id: 'OTBODY', className: "nltContent", dangerouslySetInnerHTML: { __html: data.pass.ot.body } }),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "content-break" }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { id: 'NTNOTE', className: "noteContent", dangerouslySetInnerHTML: { __html: data.note.nt } }),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h1", { id: 'NTHEAD' }, "New Testament Reading"),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h2", null, data.pass.nt.heading),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "content-break" }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { id: 'NTBODY', className: "nltContent", dangerouslySetInnerHTML: { __html: data.pass.nt.body } }),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h1", { id: 'PSHEAD' }, "Psalms Reading"),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h2", null, data.pass.ps.heading),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "content-break" }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { id: 'PSBODY', className: "nltContent", dangerouslySetInnerHTML: { __html: data.pass.ps.body } }),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h1", { id: 'PRHEAD' }, "Proverbs Reading"),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h2", null, data.pass.pr.heading),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "content-break" }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { id: 'PRBODY', className: "nltContent", dangerouslySetInnerHTML: { __html: data.pass.pr.body } }),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "content-break" }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { id: 'FSNOTE', className: "noteContent", dangerouslySetInnerHTML: { __html: data.note.fs } }),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { id: 'READBUFFER' })));
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "content-last-break" })));
     }
     componentDidMount() {
         console.log(`ReadingView componentDidMount, selected: ${this.props.selected}`);
@@ -18963,13 +18988,13 @@ class ReadingView extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
             case _store_Models__WEBPACK_IMPORTED_MODULE_1__["Selection"].NotesFS:
                 return 'FSNOTE';
             case _store_Models__WEBPACK_IMPORTED_MODULE_1__["Selection"].PassOT:
-                return 'OTHEAD';
+                return 'OTBODY';
             case _store_Models__WEBPACK_IMPORTED_MODULE_1__["Selection"].PassNT:
-                return 'NTHEAD';
+                return 'NTBODY';
             case _store_Models__WEBPACK_IMPORTED_MODULE_1__["Selection"].PassPS:
-                return 'PSHEAD';
+                return 'PSBODY';
             case _store_Models__WEBPACK_IMPORTED_MODULE_1__["Selection"].PassPr:
-                return 'PRHEAD';
+                return 'PRBODY';
             case _store_Models__WEBPACK_IMPORTED_MODULE_1__["Selection"].NotesOT:
             default:
                 return 'OTNOTE';
