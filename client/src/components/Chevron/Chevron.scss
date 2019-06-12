@@ -6,3 +6,9 @@
         fill: white;
     }
 }
+
+.chevron.down {
+    svg {
+        transform: rotate(180deg)
+    }    
+}

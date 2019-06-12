@@ -16,7 +16,8 @@ export default class PortraitLayout extends React.Component
                         </Col>
                     </Row>
                 </Container>
-                <Chevron />
+                <Footer expanded={false}/>
+                <Chevron direction='up'/>
             </div>);
     }
 }

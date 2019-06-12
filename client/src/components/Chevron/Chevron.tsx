@@ -1,10 +1,13 @@
 import * as React from 'react'
 import './Chevron.scss'
-import chevronSvg from './chevron.svg';
+import chevronUpSvg from './chevron-up.svg';
 
-const Chevron: React.SFC = () => {
+const Chevron: React.SFC<{ direction: 'up' | 'down' }> = (props) => {
+    
+    const classValue = `chevron ${props.direction}`;
+
     return (
-        <div className="chevron" dangerouslySetInnerHTML={{__html: chevronSvg}} />
+        <div className={classValue} dangerouslySetInnerHTML={{__html: chevronUpSvg}} />
         );
 }
 

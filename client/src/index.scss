@@ -32,12 +32,11 @@ code {
   }
 }
 
-.Footer
+.OuterFooter
 {
   position: fixed;
   bottom: 0px;
-  height: 90px;
-  line-height: 30px;
+  width: 100%;
   background-color: bisque;
 
   div {
@@ -48,6 +47,26 @@ code {
   .FooterButton {
     border: 2px solid red;
     font-size: small;
+  }
+}
+
+.collapsed 
+{
+  height: 23px;
+
+  .Footer 
+  {
+    display: none;
+  }  
+}
+
+.expanded 
+{
+  height: 260px;
+
+  .Footer
+  {
+    display: visible;
   }
 }
 
