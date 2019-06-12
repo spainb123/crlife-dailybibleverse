@@ -125,7 +125,15 @@ export default class ReadingsService implements IModuleRequestHandler
         heading = heading.replace('.', ' ');
         if (isNaN(parseInt(heading.substr(0, 1))))
         {
-            return heading;
+            // Special case for Kings
+            if (heading.substr(0, 'Kings'.length) === 'Kings')
+            {
+                return '1 ' + heading;
+            }
+            else
+            {
+                return heading;
+            }
         }
         else {
             return heading.substr(0, 1) + ' ' + heading.substr(1)
