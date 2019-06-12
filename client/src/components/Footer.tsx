@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { Selection } from '../store/Models';
 import { setSelection } from '../store/Actions';
 import { connect } from 'react-redux';
+import FooterButtonContainer from './FooterButtonContainer';
 
 interface IFooterActions
 {
@@ -10,26 +11,9 @@ interface IFooterActions
 }
 class Footer extends React.Component<{ expanded: boolean} & IFooterActions>
 {
-    onFooterButtonOTPassClicked = () => {
-        this.props.makeSelection(Selection.PassOT);
-    }
-    onFooterButtonNTPassClicked = () => {
-        this.props.makeSelection(Selection.PassNT);
-    }
-    onFooterButtonPSPassClicked = () => {
-        this.props.makeSelection(Selection.PassPS);
-    }
-    onFooterButtonPRPassClicked = () => {
-        this.props.makeSelection(Selection.PassPr);
-    }
-    onFooterButtonOTNoteClicked = () => {
-        this.props.makeSelection(Selection.NotesOT);
-    }
-    onFooterButtonNTNoteClicked = () => {
-        this.props.makeSelection(Selection.NotesNT);
-    }
-    onFooterButtonFSNoteClicked = () => {
-        this.props.makeSelection(Selection.NotesFS);
+    onFooterButtonContainerClicked = (selection: Selection) => {
+        console.log(`onFooterButtonContainerClicked: ${selection}`);
+        this.props.makeSelection(selection);
     }
 
     render() {
@@ -40,39 +24,39 @@ class Footer extends React.Component<{ expanded: boolean} & IFooterActions>
             <div className={`OuterFooter ${expandedClass}`}>
                 <Container fluid={true} className="Footer">
                     <Row>
-                        <Col onClick={this.onFooterButtonOTNoteClicked}>
-                            <FooterButton>Old Testament Study</FooterButton>
-                        </Col>
+                        <FooterButtonContainer 
+                            onClick={this.onFooterButtonContainerClicked}
+                            selectionOption={Selection.NotesOT}>Old Testament Study</FooterButtonContainer>
                     </Row>
                     <Row>
-                        <Col onClick={this.onFooterButtonNTNoteClicked}>
-                            <FooterButton>New Testament Study</FooterButton>
-                        </Col>
+                        <FooterButtonContainer 
+                            onClick={this.onFooterButtonContainerClicked}
+                            selectionOption={Selection.NotesNT}>New Testament Study</FooterButtonContainer>
                     </Row>
                     <Row>
-                        <Col onClick={this.onFooterButtonFSNoteClicked}>
-                            <FooterButton>Further Study</FooterButton>
-                        </Col>
+                        <FooterButtonContainer 
+                            onClick={this.onFooterButtonContainerClicked}
+                            selectionOption={Selection.NotesNT}>Further Study</FooterButtonContainer>
                     </Row>
                     <Row>
-                        <Col onClick={this.onFooterButtonOTPassClicked}>
-                            <FooterButton>Old Testament Passages</FooterButton>
-                        </Col>
+                        <FooterButtonContainer 
+                            onClick={this.onFooterButtonContainerClicked}
+                            selectionOption={Selection.PassOT}>Old Testament Passages</FooterButtonContainer>
                     </Row>
                     <Row>
-                        <Col onClick={this.onFooterButtonNTPassClicked}>
-                            <FooterButton>New Testament Passages</FooterButton>
-                        </Col>
+                        <FooterButtonContainer 
+                            onClick={this.onFooterButtonContainerClicked}
+                            selectionOption={Selection.PassNT}>New Testament Passages</FooterButtonContainer>
                     </Row>
                     <Row>
-                        <Col onClick={this.onFooterButtonPSPassClicked}>
-                            <FooterButton>Psalms</FooterButton>
-                        </Col>
+                        <FooterButtonContainer 
+                            onClick={this.onFooterButtonContainerClicked}
+                            selectionOption={Selection.PassPS}>Psalms</FooterButtonContainer>
                     </Row>
                     <Row>
-                        <Col onClick={this.onFooterButtonPRPassClicked}>
-                            <FooterButton>Proverbs</FooterButton>
-                        </Col>
+                        <FooterButtonContainer 
+                            onClick={this.onFooterButtonContainerClicked}
+                            selectionOption={Selection.PassPr}>Proverbs</FooterButtonContainer>
                     </Row>
                 </Container>
             </div>
