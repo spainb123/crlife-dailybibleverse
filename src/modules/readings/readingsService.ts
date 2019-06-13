@@ -123,21 +123,41 @@ export default class ReadingsService implements IModuleRequestHandler
     private formatHeading(heading: string) : string
     {
         heading = heading.replace('.', ' ');
-        if (isNaN(parseInt(heading.substr(0, 1))))
-        {
-            // Special case for Kings
-            if (heading.substr(0, 'Kings'.length) === 'Kings')
+
+        // Special case books
+        const bookmap = [
+            [ "1Sam", "1 Samuel" ],
+            [ "2Samuel", "2 Samuel" ],
+            [ "Kings", "1 Kings" ],
+            [ "2Kgs", "2 Kings" ],
+            [ "Chronicles", "1 Chronicles" ],
+            [ "2Chr", "2 Chronicles"],
+            [ "Corinthians", "1 Corinthians"],
+            [ "2Cor", "2 Corinthians"],
+            [ "Thessalonians", "1 Thessalonians"],
+            [ "2Thes", "2 Thessalonians"],
+            [ "Timothy", "1 Timothy"],
+            [ "2Tim", "2 Timothy"],
+            [ "Peter", "1 Peter"],
+            [ "2Pet", "2 Peter"],
+            [ "1Jn", "1 John"],
+            [ "2Jn", "2 John"],
+            [ "3Jn", "3 John"],
+        ]
+
+        const specBook = bookmap.find( spec => {
+
+            if (heading.substr(0, spec[0].length) === spec[0])
             {
-                return '1 ' + heading;
+                return true;
             }
-            else
-            {
-                return heading;
-            }
+        })
+
+        if (specBook) {
+            return specBook[1] + heading.substr(specBook[0].length);
         }
-        else {
-            return heading.substr(0, 1) + ' ' + heading.substr(1)
-        }
+        
+        return heading;
     }
 
     private buildResponse(fetchedDataCollection: FetchedData[], fullDate: string) : IReadingData {
