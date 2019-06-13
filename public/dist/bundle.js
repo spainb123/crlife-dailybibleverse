@@ -725,7 +725,7 @@ exports.push([module.i, "/*!\n * Bootstrap v4.3.1 (https://getbootstrap.com/)\n 
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".chevron .foreground {\n  fill: orange; }\n\n.chevron .background {\n  fill: white; }\n\n.chevron.down svg {\n  transform: rotate(180deg); }\n", ""]);
+exports.push([module.i, ".chevron .foreground {\n  fill: orange; }\n\n.chevron .background {\n  fill: white; }\n\n.chevron.up svg {\n  transition: transform 500ms linear 0ms;\n  transform: rotate(0deg); }\n\n.chevron.down svg {\n  transition: transform 500ms linear 0ms;\n  transform: rotate(180deg); }\n", ""]);
 
 
 
@@ -740,7 +740,7 @@ exports.push([module.i, ".chevron .foreground {\n  fill: orange; }\n\n.chevron .
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".ReadingData .Banner {\n  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }\n  .ReadingData .Banner h1 {\n    font-size: 2.2rem; }\n  .ReadingData .Banner h2 {\n    font-size: 1.8rem; }\n\n.ReadingData .noteContent h1 {\n  font-size: 2rem;\n  font-family: serif;\n  color: red; }\n\n.ReadingData .nltContent h2 {\n  color: orangered; }\n\n.ReadingData .content-break {\n  height: 60px; }\n\n.ReadingData .content-last-break {\n  height: 240px; }\n", ""]);
+exports.push([module.i, ".ReadingData .Banner {\n  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }\n  .ReadingData .Banner h1 {\n    font-size: 2.2rem; }\n  .ReadingData .Banner h2 {\n    font-size: 1.8rem; }\n\n.ReadingData .noteHeader {\n  font-size: 2rem;\n  font-family: serif;\n  color: black; }\n\n.ReadingData .noteContent h1 {\n  font-size: 2rem;\n  font-family: serif;\n  color: red; }\n\n.ReadingData .nltContent h2 {\n  color: orangered; }\n\n.ReadingData .content-break {\n  height: 60px; }\n\n.ReadingData .content-last-break {\n  height: 240px; }\n", ""]);
 
 
 
@@ -770,7 +770,7 @@ exports.push([module.i, "div.NLT {\n  font-family: serif; }\n\ndiv.NLT .text-cri
 
 exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "body {\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\r 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\r sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\r monospace; }\n\n.Portrait .chevron {\n  text-align: center;\n  position: fixed;\n  bottom: 0px;\n  height: 38px;\n  width: 100%;\n  padding-bottom: 6px; }\n  .Portrait .chevron svg {\n    height: 100%; }\n\n.OuterFooter {\n  position: fixed;\n  bottom: 0px;\n  width: 100%;\n  background-color: bisque;\n  border-top-left-radius: 6px;\n  border-top-right-radius: 6px; }\n  .OuterFooter .FooterButton {\n    border: 2px solid orange;\n    border-radius: 6px;\n    font-size: small;\n    margin-top: 5px;\n    height: 32px;\n    line-height: 26px; }\n\n.collapsed {\n  height: 23px; }\n  .collapsed .Footer {\n    display: none; }\n\n.expanded {\n  height: 316px;\n  padding-top: 10px; }\n  .expanded .Footer {\n    display: visible; }\n", ""]);
+exports.push([module.i, "body {\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\r 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\r sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\r monospace; }\n\n.Portrait .chevron {\n  text-align: center;\n  position: fixed;\n  bottom: 0px;\n  height: 38px;\n  width: 100%;\n  padding-bottom: 6px; }\n  .Portrait .chevron svg {\n    height: 100%; }\n\n.OuterFooter {\n  position: fixed;\n  padding-top: 18px;\n  bottom: 0px;\n  width: 100%;\n  background-color: bisque;\n  border-top-left-radius: 6px;\n  border-top-right-radius: 6px; }\n  .OuterFooter .FooterButton {\n    border: 2px solid orange;\n    border-radius: 6px;\n    font-size: small;\n    margin-top: 5px;\n    height: 32px;\n    line-height: 26px; }\n\n.collapsed {\n  height: 23px;\n  transition: height 500ms ease 0ms; }\n\n.expanded {\n  height: 324px;\n  transition: height 500ms ease 0ms; }\n", ""]);
 
 
 
@@ -18766,15 +18766,16 @@ class Footer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null,
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onFooterButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].NotesNT }, "New Testament Study")),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null,
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onFooterButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].NotesFS }, "Further Study")),
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null,
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onFooterButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].PassOT }, "Old Testament Passages")),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null,
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onFooterButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].PassNT }, "New Testament Passages")),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null,
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onFooterButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].PassPS }, "Psalms")),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null,
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onFooterButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].PassPr }, "Proverbs")))));
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onFooterButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].PassPr }, "Proverbs")),
+                this.props.furtherStudy &&
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null,
+                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onFooterButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].NotesFS }, "Further Study")))));
     }
 }
 function mapDispatchToProps(dispatch) {
@@ -18782,9 +18783,6 @@ function mapDispatchToProps(dispatch) {
         makeSelection: (selection) => { dispatch(Object(_store_Actions__WEBPACK_IMPORTED_MODULE_3__["setSelection"])(selection)); }
     };
 }
-const FooterButton = (props) => {
-    return react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "FooterButton text-center" }, props.children);
-};
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(null, mapDispatchToProps)(Footer));
 
 
@@ -18875,13 +18873,14 @@ class PortraitLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], { noGutters: true },
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null,
                         react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_ReadingData__WEBPACK_IMPORTED_MODULE_3__["default"], null)))),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], { expanded: this.props.expanded }),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], { expanded: this.props.expanded, furtherStudy: this.props.furtherStudy }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_Chevron_Chevron__WEBPACK_IMPORTED_MODULE_4__["default"], { direction: (this.props.expanded) ? 'down' : 'up', onClick: this.onChevronClicked })));
     }
 }
 function mapStateToProps(state) {
     return {
-        expanded: state.footerExpanded
+        expanded: state.footerExpanded,
+        furtherStudy: state.data.note.fs.length > 0
     };
 }
 function mapDispatchToProps(dispatch) {
@@ -18955,11 +18954,13 @@ class ReadingView extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h1", null, "Daily Bible Reading"),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h2", null, data.fullDate)),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "content-break" }),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { id: 'OTNOTE', className: "noteContent", dangerouslySetInnerHTML: { __html: data.note.ot } }),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { id: 'OTNOTE', className: "noteHeader" }, "Old Testament Study"),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "noteContent", dangerouslySetInnerHTML: { __html: data.note.ot } }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "content-break" }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { id: 'OTBODY', className: "nltContent", dangerouslySetInnerHTML: { __html: data.pass.ot.body } }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "content-break" }),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { id: 'NTNOTE', className: "noteContent", dangerouslySetInnerHTML: { __html: data.note.nt } }),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { id: 'NTNOTE', className: "noteHeader" }, "New Testament Study"),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "noteContent", dangerouslySetInnerHTML: { __html: data.note.nt } }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "content-break" }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { id: 'NTBODY', className: "nltContent", dangerouslySetInnerHTML: { __html: data.pass.nt.body } }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "content-break" }),
@@ -18967,7 +18968,8 @@ class ReadingView extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "content-break" }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { id: 'PRBODY', className: "nltContent", dangerouslySetInnerHTML: { __html: data.pass.pr.body } }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "content-break" }),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { id: 'FSNOTE', className: "noteContent", dangerouslySetInnerHTML: { __html: data.note.fs } }),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { id: 'FSNOTE', className: "noteHeader" }, "Further Study"),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "noteContent", dangerouslySetInnerHTML: { __html: data.note.fs } }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: "content-last-break" })));
     }
     componentDidMount() {
