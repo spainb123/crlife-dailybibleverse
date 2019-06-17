@@ -60,6 +60,7 @@ export default class ReadingsService implements IModuleRequestHandler
     {
         const fetchers : Promise<FetchedData>[] = [];
         const stringDates = getNormalizedDates({ month, date });
+        const readingRef = `${stringDates.month}${stringDates.date}`;
 
         const passFetchers = [PassageEntryType.ot, PassageEntryType.nt, PassageEntryType.ps, PassageEntryType.pr].map(type => {
             return this.fetchPassage(month, date, type).then(data => {
@@ -90,7 +91,7 @@ export default class ReadingsService implements IModuleRequestHandler
         fetchers.push(...noteFetchers);
 
         return Promise.all(fetchers).then(fetcherData => {
-            const retval = this.buildResponse(fetcherData, getFullDate(month, date));
+            const retval = this.buildResponse(fetcherData, readingRef, getFullDate(month, date));
             return retval;
         });
     }
@@ -160,10 +161,11 @@ export default class ReadingsService implements IModuleRequestHandler
         return heading;
     }
 
-    private buildResponse(fetchedDataCollection: FetchedData[], fullDate: string) : IReadingData {
+    private buildResponse(fetchedDataCollection: FetchedData[], readingRef: string, fullDate: string) : IReadingData {
 
         const retval : IReadingData = {
             fullDate,
+            ref: readingRef,
             pass: {
                 ot: { heading: '', body: '' },
                 nt: { heading: '', body: '' },
