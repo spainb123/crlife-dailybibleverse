@@ -9,6 +9,7 @@
     "start": "node ./dist/main.js",
     "dev": "cross-env DEBUG=app* cross-env PORT=3000 nodemon --ignore './data/dev/' ./dist/main.js",
     "dev:azure": "cross-env DEBUG=app* cross-env PORT=3000 cross-env _DAILY_AZURE=true nodemon --ignore './data/dev/' ./dist/main.js",
+    "test": "jest",
     "packclient": "node ./util/packclient.js"
   },
   "repository": {
@@ -26,6 +27,20 @@
     "url": "https://github.com/bspain/crlife-dailybibleverse/issues"
   },
   "homepage": "https://github.com/bspain/crlife-dailybibleverse#readme",
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "roots" : [
+      "./src"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "ts-jest"
+    },
+    "testRegex": "/__tests__/.*\\.(ts|tsx|js)$"
+  },
   "dependencies": {
     "@azure/storage-blob": "^10.3.0",
     "cheerio": "^1.0.0-rc.3",
@@ -37,13 +52,16 @@
     "@types/cheerio": "^0.22.11",
     "@types/debug": "^4.1.4",
     "@types/express": "^4.16.1",
+    "@types/jest": "^24.0.15",
     "@types/node": "^10.14.8",
     "@types/node-fetch": "^2.3.4",
     "@types/request": "^2.48.1",
     "cross-env": "^5.2.0",
+    "jest": "^24.8.0",
     "ncp": "^2.0.0",
     "nodemon": "^1.19.0",
     "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.4.5"
   }
 }
