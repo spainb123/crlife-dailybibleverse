@@ -6,7 +6,7 @@ import { PassageEntryType } from '../../descriptors/PassageEntryType';
 import Logger from '../../logger';
 import INoteStorageService from '../../descriptors/INoteStorageService';
 import { NoteEntryType } from '../../descriptors/NoteEntryType';
-import { getNormalizedDates, getFullDate } from '../../helpers/dateHelper';
+import { getNormalizedDates, getFullDate, getNextDailyRef, getPrevDailyRef } from '../../helpers/dateHelper';
 import IReadingData from '../../descriptors/IReadingData';
 import IDailyStorageService from '../../descriptors/IDailyStorageService';
 
@@ -61,6 +61,8 @@ export default class ReadingsService implements IModuleRequestHandler
         const fetchers : Promise<FetchedData>[] = [];
         const stringDates = getNormalizedDates({ month, date });
         const readingRef = `${stringDates.month}${stringDates.date}`;
+        const nextRef = getNextDailyRef(readingRef, this.metadata);
+        const prevRef = getPrevDailyRef(readingRef, this.metadata);
 
         const passFetchers = [PassageEntryType.ot, PassageEntryType.nt, PassageEntryType.ps, PassageEntryType.pr].map(type => {
             return this.fetchPassage(month, date, type).then(data => {

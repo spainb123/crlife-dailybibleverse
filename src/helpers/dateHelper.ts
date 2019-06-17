@@ -21,6 +21,16 @@ export function getDailyDataFileName(month: number, date: number) : string
     return `${normalizedDates.month}${normalizedDates.date}-daily.json`;
 }
 
+export function getNextDailyRef(ref: string, meta: any) : string
+{
+    return 'Not yet implemented';
+}
+
+export function getPrevDailyRef(ref: string, meta: any) : string
+{
+    return 'Not yet implemented';
+}
+
 function getMonthName(month: number) : string
 {
     switch(month)
