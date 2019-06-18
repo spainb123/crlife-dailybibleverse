@@ -1,9 +1,14 @@
-export function getNormalizedDates(entry: { month: number, date: number }) : { month: string, date: string }
+export function getNormalizedDates(entry: { month: number, date: number }) : { month: string, date: string, ref: string }
 {
-    return {
+    const retval = {
         month: entry.month < 10 ? "0" + entry.month.toString() : entry.month.toString(),
-        date: entry.date < 10 ? "0" + entry.date.toString() : entry.date.toString()
+        date: entry.date < 10 ? "0" + entry.date.toString() : entry.date.toString(),
+        ref: ''
     }
+
+    retval.ref = `${retval.month}${retval.date}`;
+
+    return retval;
 }
 
 export function getFullDate(month: number, date: number) : string
@@ -18,7 +23,7 @@ export function getFullDate(month: number, date: number) : string
 export function getDailyDataFileName(month: number, date: number) : string
 {
     const normalizedDates = getNormalizedDates({ month, date });
-    return `${normalizedDates.month}${normalizedDates.date}-daily.json`;
+    return `${normalizedDates.ref}-daily.json`;
 }
 
 export function getNextDailyRef(ref: string, meta: any) : string

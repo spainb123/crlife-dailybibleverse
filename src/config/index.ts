@@ -1,6 +1,6 @@
 import * as express from 'express';
 import loadEnvironment from './env';
-import loadMetadata from './metaLoader';
+import MetadataProvider from './MetadataProvider';
 import NotesStorage from '../services/noteStorage';
 import ReadingModule from '../modules/readings';
 import PassagesStorage from '../services/passageStorage';
@@ -18,16 +18,14 @@ export default function config(logger: Logger) {
 
    loadEnvironment();
 
-   const metadata = loadMetadata();
-
-
+   const metadataProvider = new MetadataProvider();
    const passagesStorage = new PassagesStorage(logger);
    const notesStorage = new NotesStorage(logger);
    const azureDailyStorage = new AzureDailyStorage(logger);
    const dailyStorage = new DailyStorage(logger);
    const healthModule = new HealthModule(logger);
-   const passagesModule = new PassageModule(passagesStorage, metadata, logger);
-   const readingsModule = new ReadingModule(passagesStorage, notesStorage, dailyStorage, metadata, logger);
+   const passagesModule = new PassageModule(passagesStorage, metadataProvider, logger);
+   const readingsModule = new ReadingModule(passagesStorage, notesStorage, dailyStorage, metadataProvider, logger);
 
    const dailyDataProvider = (process.env._DAILY_AZURE) ? azureDailyStorage : dailyStorage;
 
