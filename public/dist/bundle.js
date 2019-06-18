@@ -18992,7 +18992,12 @@ class ReadingView extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         this.scrollToSelection();
     }
     scrollToSelection() {
-        document.getElementById(this.getElementIdFromCurrentSelection()).scrollIntoView();
+        if (this.props.selected === _store_Models__WEBPACK_IMPORTED_MODULE_1__["Selection"].None) {
+            window.scrollTo(0, 0);
+        }
+        else {
+            document.getElementById(this.getElementIdFromCurrentSelection()).scrollIntoView();
+        }
     }
     getElementIdFromCurrentSelection() {
         switch (this.props.selected) {
@@ -19009,8 +19014,9 @@ class ReadingView extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
             case _store_Models__WEBPACK_IMPORTED_MODULE_1__["Selection"].PassPr:
                 return 'PRBODY';
             case _store_Models__WEBPACK_IMPORTED_MODULE_1__["Selection"].NotesOT:
-            default:
                 return 'OTNOTE';
+            default:
+                return 'TOP';
         }
     }
 }
@@ -19186,7 +19192,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Models__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Models */ "./src/store/Models.ts");
 
 const initialState = {
-    selection: _Models__WEBPACK_IMPORTED_MODULE_0__["Selection"].NotesOT,
+    selection: _Models__WEBPACK_IMPORTED_MODULE_0__["Selection"].None,
     data: {
         fullDate: '',
         ref: '',
@@ -19235,13 +19241,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavRef", function() { return NavRef; });
 var Selection;
 (function (Selection) {
-    Selection[Selection["NotesOT"] = 0] = "NotesOT";
-    Selection[Selection["NotesNT"] = 1] = "NotesNT";
-    Selection[Selection["NotesFS"] = 2] = "NotesFS";
-    Selection[Selection["PassOT"] = 3] = "PassOT";
-    Selection[Selection["PassNT"] = 4] = "PassNT";
-    Selection[Selection["PassPS"] = 5] = "PassPS";
-    Selection[Selection["PassPr"] = 6] = "PassPr";
+    Selection[Selection["None"] = 0] = "None";
+    Selection[Selection["NotesOT"] = 1] = "NotesOT";
+    Selection[Selection["NotesNT"] = 2] = "NotesNT";
+    Selection[Selection["NotesFS"] = 3] = "NotesFS";
+    Selection[Selection["PassOT"] = 4] = "PassOT";
+    Selection[Selection["PassNT"] = 5] = "PassNT";
+    Selection[Selection["PassPS"] = 6] = "PassPS";
+    Selection[Selection["PassPr"] = 7] = "PassPr";
 })(Selection || (Selection = {}));
 var NavRef;
 (function (NavRef) {
