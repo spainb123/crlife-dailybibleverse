@@ -19,7 +19,8 @@ code {
     position: fixed;
     bottom: 0px;
     height: 38px;
-    width: 100%;
+    width: 38px;
+    left: calc(50% - 19px);
     padding-bottom: 6px;
 
     svg {
