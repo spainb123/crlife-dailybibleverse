@@ -100,11 +100,7 @@ export default class ReadingsService implements IModuleRequestHandler
         fetchers.push(...noteFetchers);
 
         return Promise.all(fetchers).then(fetcherData => {
-<<<<<<< HEAD
-            const retval = this.buildResponse(fetcherData, readingRef, getFullDate(month, date));
-=======
             const retval = this.buildResponse(fetcherData, readingEntry.ref, prevRef, nextRef, getFullDate(month, date));
->>>>>>> a72d24458671cd2f22a7234e1748a5e1b0ba029f
             return retval;
         });
     }
@@ -174,13 +170,6 @@ export default class ReadingsService implements IModuleRequestHandler
         return heading;
     }
 
-<<<<<<< HEAD
-    private buildResponse(fetchedDataCollection: FetchedData[], readingRef: string, fullDate: string) : IReadingData {
-
-        const retval : IReadingData = {
-            fullDate,
-            ref: readingRef,
-=======
     private buildResponse(fetchedDataCollection: FetchedData[], ref: string, prev: string, next: string, fullDate: string) : IReadingData {
 
         const retval : IReadingData = {
@@ -188,7 +177,6 @@ export default class ReadingsService implements IModuleRequestHandler
             ref,
             prev,
             next, 
->>>>>>> a72d24458671cd2f22a7234e1748a5e1b0ba029f
             pass: {
                 ot: { heading: '', body: '' },
                 nt: { heading: '', body: '' },
