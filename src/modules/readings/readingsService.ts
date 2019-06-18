@@ -6,9 +6,10 @@ import { PassageEntryType } from '../../descriptors/PassageEntryType';
 import Logger from '../../logger';
 import INoteStorageService from '../../descriptors/INoteStorageService';
 import { NoteEntryType } from '../../descriptors/NoteEntryType';
-import { getNormalizedDates, getFullDate } from '../../helpers/dateHelper';
+import { getNormalizedDates, getFullDate, getNextDailyRef, getPrevDailyRef } from '../../helpers/dateHelper';
 import IReadingData from '../../descriptors/IReadingData';
 import IDailyStorageService from '../../descriptors/IDailyStorageService';
+import IMetadataProvider from '../../descriptors/IMetadata';
 
 
 export interface ReadingRef {
@@ -34,7 +35,7 @@ export default class ReadingsService implements IModuleRequestHandler
         private passageStorageService: IPassageStorageService,
         private noteStorageService: INoteStorageService,
         private dailyStorageService: IDailyStorageService,
-        private metadata: any,
+        private metadata: IMetadataProvider,
         private logger: Logger
     ) {}
 
@@ -61,10 +62,15 @@ export default class ReadingsService implements IModuleRequestHandler
         const fetchers : Promise<FetchedData>[] = [];
         const stringDates = getNormalizedDates({ month, date });
 
+        const readingEntry = this.metadata.getEntry(stringDates.ref);
+        const nextRef = this.metadata.getNextEntry(stringDates.ref).ref;
+        const prevRef = this.metadata.getPrevEntry(stringDates.ref).ref;
+
         const passFetchers = [PassageEntryType.ot, PassageEntryType.nt, PassageEntryType.ps, PassageEntryType.pr].map(type => {
             return this.fetchPassage(month, date, type).then(data => {
 
-                const heading = this.formatHeading(<string>this.metadata[stringDates.month][stringDates.date]['pass'][type]);
+                //const heading = this.formatHeading(<string>this.metadata[stringDates.month][stringDates.date]['pass'][type]);
+                const heading = this.formatHeading(readingEntry.pass[type]);
 
                 return <FetchedData>{
                     heading,
@@ -75,8 +81,11 @@ export default class ReadingsService implements IModuleRequestHandler
             })
         })
 
-        const noteTypes = (<Array<string>>this.metadata[stringDates.month][stringDates.date]['note']).map(type => <NoteEntryType><unknown>type);
-        const noteFetchers = noteTypes.map(type => {
+        //const noteTypes = (<Array<string>>this.metadata[stringDates.month][stringDates.date]['note']).map(type => <NoteEntryType><unknown>type);
+        // const noteFetchers = noteTypes.map(type => {
+
+        const noteFetchers = readingEntry.note.map((t: string) => {
+            const type = <NoteEntryType>t;
             return this.fetchNote(month, date, type).then(data => {
                 return <FetchedData>{
                     contentType: ContentType.note,
@@ -90,7 +99,7 @@ export default class ReadingsService implements IModuleRequestHandler
         fetchers.push(...noteFetchers);
 
         return Promise.all(fetchers).then(fetcherData => {
-            const retval = this.buildResponse(fetcherData, getFullDate(month, date));
+            const retval = this.buildResponse(fetcherData, readingEntry.ref, prevRef, nextRef, getFullDate(month, date));
             return retval;
         });
     }
@@ -160,10 +169,13 @@ export default class ReadingsService implements IModuleRequestHandler
         return heading;
     }
 
-    private buildResponse(fetchedDataCollection: FetchedData[], fullDate: string) : IReadingData {
+    private buildResponse(fetchedDataCollection: FetchedData[], ref: string, prev: string, next: string, fullDate: string) : IReadingData {
 
         const retval : IReadingData = {
             fullDate,
+            ref,
+            prev,
+            next, 
             pass: {
                 ot: { heading: '', body: '' },
                 nt: { heading: '', body: '' },

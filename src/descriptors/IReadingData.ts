@@ -4,6 +4,9 @@ export interface IPassageDataItem {
     body: string
 }
 export default interface IReadingData {
+    ref: string,
+    prev: string,
+    next: string,
     fullDate: string,
     pass: {
         [ key: string ] : IPassageDataItem,
