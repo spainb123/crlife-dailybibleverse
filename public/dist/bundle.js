@@ -770,7 +770,7 @@ exports.push([module.i, "div.NLT {\n  font-family: serif; }\n\ndiv.NLT .text-cri
 
 exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "body {\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\r 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\r sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\r monospace; }\n\n.Portrait .chevron {\n  text-align: center;\n  position: fixed;\n  bottom: 0px;\n  height: 38px;\n  width: 100%;\n  padding-bottom: 6px; }\n  .Portrait .chevron svg {\n    height: 100%; }\n\n.OuterFooter {\n  position: fixed;\n  padding-top: 18px;\n  bottom: 0px;\n  width: 100%;\n  background-color: bisque;\n  border-top-left-radius: 6px;\n  border-top-right-radius: 6px; }\n  .OuterFooter .FooterButton {\n    border: 2px solid orange;\n    border-radius: 6px;\n    font-size: small;\n    margin-top: 5px;\n    height: 32px;\n    line-height: 26px; }\n\n.collapsed {\n  height: 23px;\n  transition: height 500ms ease 0ms; }\n\n.expanded {\n  height: 324px;\n  transition: height 500ms ease 0ms; }\n", ""]);
+exports.push([module.i, "body {\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\r 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\r sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\r monospace; }\n\n.Portrait .chevron {\n  text-align: center;\n  position: fixed;\n  bottom: 0px;\n  height: 38px;\n  width: 38px;\n  left: calc(50% - 19px);\n  padding-bottom: 6px; }\n  .Portrait .chevron svg {\n    height: 100%; }\n\n.OuterFooter {\n  position: fixed;\n  padding-top: 18px;\n  bottom: 0px;\n  width: 100%;\n  background-color: bisque;\n  border-top-left-radius: 6px;\n  border-top-right-radius: 6px; }\n  .OuterFooter .FooterButton {\n    border: 2px solid orange;\n    border-radius: 6px;\n    font-size: small;\n    margin-top: 5px;\n    height: 32px;\n    line-height: 26px; }\n  .OuterFooter .buttonNavDivider {\n    height: 4px; }\n  .OuterFooter .navRow .FooterButton {\n    width: 80px;\n    left: calc(50% - 40px);\n    position: relative; }\n\n.collapsed {\n  height: 23px;\n  transition: height 500ms ease 0ms; }\n\n.expanded {\n  height: 324px;\n  transition: height 500ms ease 0ms; }\n", ""]);
 
 
 
@@ -18756,6 +18756,11 @@ class Footer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
             console.log(`onFooterButtonContainerClicked: ${selection}`);
             this.props.makeSelection(selection);
         };
+        this.onNavButtonContainerClicked = (ref) => {
+            const targetRef = (ref == _store_Models__WEBPACK_IMPORTED_MODULE_2__["NavRef"].Next) ? this.props.nextRef : this.props.prevRef;
+            console.log(`onNavButtonContainerClicked: ${ref}, ${targetRef}`);
+            window.location.href = `${window.location.origin}${window.location.pathname}?ref=${targetRef}`;
+        };
     }
     render() {
         const expandedClass = (this.props.expanded) ? 'expanded' : 'collapsed';
@@ -18775,7 +18780,11 @@ class Footer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onFooterButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].PassPr }, "Proverbs")),
                 this.props.furtherStudy &&
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null,
-                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onFooterButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].NotesFS }, "Further Study")))));
+                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onFooterButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["Selection"].NotesFS }, "Further Study")),
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: `buttonNavDivider` }),
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], { className: `navRow` },
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onNavButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["NavRef"].Prev }, '<'),
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_FooterButtonContainer__WEBPACK_IMPORTED_MODULE_5__["default"], { onClick: this.onNavButtonContainerClicked, selectionOption: _store_Models__WEBPACK_IMPORTED_MODULE_2__["NavRef"].Next }, '>')))));
     }
 }
 function mapDispatchToProps(dispatch) {
@@ -18873,14 +18882,16 @@ class PortraitLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], { noGutters: true },
                     react__WEBPACK_IMPORTED_MODULE_0__["createElement"](reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null,
                         react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_ReadingData__WEBPACK_IMPORTED_MODULE_3__["default"], null)))),
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], { expanded: this.props.expanded, furtherStudy: this.props.furtherStudy }),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], { expanded: this.props.expanded, furtherStudy: this.props.furtherStudy, nextRef: this.props.nextRef, prevRef: this.props.prevRef }),
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_Chevron_Chevron__WEBPACK_IMPORTED_MODULE_4__["default"], { direction: (this.props.expanded) ? 'down' : 'up', onClick: this.onChevronClicked })));
     }
 }
 function mapStateToProps(state) {
     return {
         expanded: state.footerExpanded,
-        furtherStudy: state.data.note.fs.length > 0
+        furtherStudy: state.data.note.fs.length > 0,
+        prevRef: state.data.prev,
+        nextRef: state.data.next
     };
 }
 function mapDispatchToProps(dispatch) {
@@ -19178,6 +19189,9 @@ const initialState = {
     selection: _Models__WEBPACK_IMPORTED_MODULE_0__["Selection"].NotesOT,
     data: {
         fullDate: '',
+        ref: '',
+        prev: '',
+        next: '',
         pass: {
             ot: {
                 heading: '',
@@ -19212,12 +19226,13 @@ const initialState = {
 /*!*****************************!*\
   !*** ./src/store/Models.ts ***!
   \*****************************/
-/*! exports provided: Selection */
+/*! exports provided: Selection, NavRef */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Selection", function() { return Selection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NavRef", function() { return NavRef; });
 var Selection;
 (function (Selection) {
     Selection[Selection["NotesOT"] = 0] = "NotesOT";
@@ -19228,6 +19243,11 @@ var Selection;
     Selection[Selection["PassPS"] = 5] = "PassPS";
     Selection[Selection["PassPr"] = 6] = "PassPr";
 })(Selection || (Selection = {}));
+var NavRef;
+(function (NavRef) {
+    NavRef[NavRef["Prev"] = 0] = "Prev";
+    NavRef[NavRef["Next"] = 1] = "Next";
+})(NavRef || (NavRef = {}));
 
 
 /***/ }),
