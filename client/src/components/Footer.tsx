@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import { Selection } from '../store/Models';
+import { Selection, NavRef } from '../store/Models';
 import { setSelection } from '../store/Actions';
 import { connect } from 'react-redux';
 import FooterButtonContainer from './FooterButtonContainer';
 
 interface IFooterProps
 {
-    expanded: boolean, 
+    expanded: boolean,
+    prevRef: string,
+    nextRef: string,
     furtherStudy: boolean
 }
 interface IFooterActions
@@ -19,6 +21,12 @@ class Footer extends React.Component<IFooterProps & IFooterActions>
     onFooterButtonContainerClicked = (selection: Selection) => {
         console.log(`onFooterButtonContainerClicked: ${selection}`);
         this.props.makeSelection(selection);
+    }
+
+    onNavButtonContainerClicked = (ref: NavRef) => {
+        const targetRef = (ref == NavRef.Next) ? this.props.nextRef : this.props.prevRef;
+        console.log(`onNavButtonContainerClicked: ${ref}, ${targetRef}`);
+        window.location.href = `${window.location.origin}${window.location.pathname}?ref=${targetRef}`;
     }
 
     render() {
@@ -65,6 +73,15 @@ class Footer extends React.Component<IFooterProps & IFooterActions>
                             selectionOption={Selection.NotesFS}>Further Study</FooterButtonContainer>
                     </Row>
                     }
+                    <div className={`buttonNavDivider`}/>
+                    <Row className={`navRow`}>
+                        <FooterButtonContainer onClick={this.onNavButtonContainerClicked}
+                        selectionOption={NavRef.Prev}>{'<'}</FooterButtonContainer>
+                        <FooterButtonContainer onClick={this.onNavButtonContainerClicked}
+                        selectionOption={NavRef.Next}>{'>'}</FooterButtonContainer>
+                        {/* <Col>{this.props.prevRef}</Col>
+                        <Col>{this.props.nextRef}</Col> */}
+                    </Row>
                 </Container>
             </div>
         )

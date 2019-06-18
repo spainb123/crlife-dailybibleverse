@@ -11,6 +11,12 @@ export enum Selection
     PassPr
 }
 
+export enum NavRef
+{
+    Prev,
+    Next
+}
+
 export interface IStore
 {
     data: IReadingData

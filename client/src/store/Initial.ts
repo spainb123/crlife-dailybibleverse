@@ -4,6 +4,9 @@ export const initialState : IStore = {
     selection: Selection.NotesOT,
     data: {
         fullDate: '',
+        ref: '',
+        prev: '',
+        next: '',
         pass: {
             ot: 
             {

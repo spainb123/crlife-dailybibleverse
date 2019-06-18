@@ -47,6 +47,16 @@ code {
     height: 32px;
     line-height: 26px;
    }
+
+   .buttonNavDivider {
+     height: 4px;
+   }
+
+   .navRow .FooterButton {
+    width: 80px;
+    left: calc(50% - 40px);
+    position: relative;
+   }
 }
 
 .collapsed 

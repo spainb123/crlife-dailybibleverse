@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Col } from 'reactstrap';
 import FooterButton from './FooterButton';
-import { Selection } from '../store/Models';
+import { Selection, NavRef } from '../store/Models';
 
 interface FooterButtonContainerProps {
     children: string,
-    selectionOption: Selection,
-    onClick(selection: Selection): void 
+    selectionOption: Selection | NavRef,
+    onClick(selection: Selection | NavRef): void 
 }
 
 const FooterButtonContainer: React.SFC<FooterButtonContainerProps> = (props) => {
