@@ -6,12 +6,14 @@ import * as cheerio from 'cheerio';
 import IModuleRequestHandler from "../../descriptors/IModuleRequestHandler";
 import Logger from '../../logger';
 import IDailyDataProvider from '../../descriptors/IDailyDataProivder';
+import IMetadataProvider from '../../descriptors/IMetadata';
+import { getNormalizedDates } from '../../helpers/dateHelper';
 
 const indexFile = path.join(__dirname, './../../../public/index.html');
 
 export default class ClientService implements IModuleRequestHandler {
 
-    constructor(private dailyDataProvider: IDailyDataProvider, private logger: Logger) {}
+    constructor(private dailyDataProvider: IDailyDataProvider, private metadata: IMetadataProvider, private logger: Logger) {}
 
     requestHandler(request: Request, response: Response): void {
 
@@ -31,6 +33,15 @@ export default class ClientService implements IModuleRequestHandler {
 
             month = parsed.month;
             date = parsed.date;
+        }
+
+        // Confirm daily data in meta
+        const nDates = getNormalizedDates({month, date});
+        if (this.metadata.getEntry(nDates.ref) === null)
+        {
+            const newRef = this.parseRef(this.metadata.getFirstEntry().ref);
+            month = newRef.month;
+            date = newRef.date;
         }
 
         // Fetch Reading

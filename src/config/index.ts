@@ -30,7 +30,7 @@ export default function config(logger: Logger) {
    const dailyDataProvider = (process.env._DAILY_AZURE) ? azureDailyStorage : dailyStorage;
 
    const dailyModule = new DailyModule(dailyDataProvider, logger);
-   const clientModule = new ClientModule(dailyDataProvider, logger);
+   const clientModule = new ClientModule(dailyDataProvider, metadataProvider, logger);
 
    app.use('/public', express.static('public'))
 

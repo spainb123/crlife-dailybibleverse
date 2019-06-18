@@ -16,8 +16,13 @@ export default class MetadataProvider implements IMetadataProvider
         }
     }
 
+    getFirstEntry() : IMetadataEntry {
+        return this.getEntryAtIndex(0);
+    }
+
     getEntry(ref: string): IMetadataEntry {
         const index = this.getEntryIndex(ref);
+        if (index === -1) return null;
         return this.getEntryAtIndex(index);
     }
 
@@ -51,8 +56,3 @@ export default class MetadataProvider implements IMetadataProvider
         return entry;
     }
 }
-// export default function loadMetadata()
-// {
-//     const metaConfig = JSON.parse(fs.readFileSync(metaConfigFile).toString());
-//     return metaConfig;
-// }

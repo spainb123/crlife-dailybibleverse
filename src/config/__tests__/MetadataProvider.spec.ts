@@ -71,4 +71,13 @@ describe('Metaloader', () => {
         expect(metadataProvider.getNextEntry("0602").ref).toEqual("0603");
         expect(metadataProvider.getNextEntry("0603").ref).toEqual("0601");
     })
+
+    it('should return null if ref is invalid', () => {
+        expect(metadataProvider.getEntry("0531")).toBeNull();
+        expect(metadataProvider.getEntry("")).toBeNull();
+    })
+
+    it('should return first entry for getFirstEntry', () => {
+        expect(metadataProvider.getFirstEntry().ref).toEqual("0601");
+    })
 })

@@ -7,6 +7,7 @@ export interface IMetadataEntry {
 }
 
 export default interface IMetadataProvider {
+    getFirstEntry() : IMetadataEntry
     getEntry(ref: string) : IMetadataEntry
     getPrevEntry(ref: string) : IMetadataEntry
     getNextEntry(ref: string) : IMetadataEntry
