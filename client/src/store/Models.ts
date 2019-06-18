@@ -2,6 +2,7 @@ import IReadingData from "./IReadingData";
 
 export enum Selection 
 {
+    None,
     NotesOT,
     NotesNT,
     NotesFS,

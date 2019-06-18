@@ -55,7 +55,13 @@ class ReadingView extends React.Component<IReadingViewProps>
         }
 
         scrollToSelection() {
-                document.getElementById(this.getElementIdFromCurrentSelection()).scrollIntoView();
+                if (this.props.selected === Selection.None) {
+                        window.scrollTo(0, 0);
+                }
+                else 
+                {
+                        document.getElementById(this.getElementIdFromCurrentSelection()).scrollIntoView();
+                }
         }
 
         getElementIdFromCurrentSelection() {
@@ -73,8 +79,9 @@ class ReadingView extends React.Component<IReadingViewProps>
                         case Selection.PassPr:
                                 return 'PRBODY';
                         case Selection.NotesOT:
-                        default:
                                 return 'OTNOTE';
+                        default:
+                                return 'TOP';
                 }
         }
 
