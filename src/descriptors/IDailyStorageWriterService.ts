@@ -1,5 +1,5 @@
 import IReadingData from "./IReadingData";
 
-export default interface IDailyStorageService {
+export default interface IDailyStorageWriterService {
     writeDailyContent(month: number, date: number, readingData: IReadingData): Promise<void>
 }

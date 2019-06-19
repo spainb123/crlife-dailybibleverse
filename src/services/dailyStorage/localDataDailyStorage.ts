@@ -1,11 +1,11 @@
 import BaseLocalStorageService from "../baseLocalStorage/baseLocalStorage";
-import IDailyStorageService from "../../descriptors/IDailyStorageService";
+import IDailyStorageWriterService from "../../descriptors/IDailyStorageWriterService";
 import Logger from "../../logger";
 import IReadingData from "../../descriptors/IReadingData";
-import IDailyDataProvider from "../../descriptors/IDailyDataProivder";
-import { getNormalizedDates, getDailyDataFileName } from "../../helpers/dateHelper";
+import { getDailyDataFileName } from "../../helpers/dateHelper";
+import IDailyStorageReaderService from "../../descriptors/IDailyStorageReaderService";
 
-export default class LocalDataDailyStorage extends BaseLocalStorageService implements IDailyStorageService, IDailyDataProvider
+export default class LocalDataDailyStorage extends BaseLocalStorageService implements IDailyStorageWriterService, IDailyStorageReaderService
 {
     constructor(logger: Logger) {
         super(logger);

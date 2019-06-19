@@ -4,8 +4,9 @@ import Logger from "../../logger";
 import IReadingData from "../../descriptors/IReadingData";
 import { SharedKeyCredential, StorageURL, ServiceURL, ContainerURL, BlobURL, Aborter } from "@azure/storage-blob";
 import { getDailyDataFileName } from "../../helpers/dateHelper";
+import IDailyStorageReaderService from "../../descriptors/IDailyStorageReaderService";
 
-export default class AzureDailyStorage implements IDailyDataProvider
+export default class AzureDailyStorage implements IDailyStorageReaderService
 {
     constructor(
         private logger: Logger

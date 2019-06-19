@@ -3,10 +3,12 @@ export interface IPassageDataItem {
     heading: string,
     body: string
 }
+export interface IReadingNavData {
+    prev: string, 
+    next: string
+}
 export default interface IReadingData {
     ref: string,
-    prev: string,
-    next: string,
     fullDate: string,
     pass: {
         [ key: string ] : IPassageDataItem,

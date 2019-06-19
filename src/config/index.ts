@@ -10,6 +10,7 @@ import HealthModule from '../modules/health';
 import PassageModule from '../modules/passages';
 import DailyModule from '../modules/daily';
 import ClientModule from '../modules/client';
+import DailyDataProvider from '../services/dailyDataProvider';
 import Logger from '../logger';
 
 const app = express();
@@ -27,10 +28,10 @@ export default function config(logger: Logger) {
    const passagesModule = new PassageModule(passagesStorage, metadataProvider, logger);
    const readingsModule = new ReadingModule(passagesStorage, notesStorage, dailyStorage, metadataProvider, logger);
 
-   const dailyDataProvider = (process.env._DAILY_AZURE) ? azureDailyStorage : dailyStorage;
+   const dailyDataProvider = new DailyDataProvider((process.env._DAILY_AZURE) ? azureDailyStorage : dailyStorage, metadataProvider);
 
    const dailyModule = new DailyModule(dailyDataProvider, logger);
-   const clientModule = new ClientModule(dailyDataProvider, metadataProvider, logger);
+   const clientModule = new ClientModule(dailyDataProvider, logger);
 
    app.use('/public', express.static('public'))
 

@@ -26,15 +26,29 @@ export function getDailyDataFileName(month: number, date: number) : string
     return `${normalizedDates.ref}-daily.json`;
 }
 
-export function getNextDailyRef(ref: string, meta: any) : string
+export function parseRef(ref: string) : { valid: boolean, month: number, date: number}
 {
-    return 'Not yet implemented';
+    try {
+        const value = parseInt(ref);
+        if (value > 1231 || value < 101) {
+            throw new Error('Invalid ref value.');
+        }
+
+        const builtDate = new Date(
+            new Date().getFullYear(),
+            value / 100,
+            value % 100
+        );
+
+        return { valid: true, month: builtDate.getMonth(), date: builtDate.getDate() }
+
+    } catch (e)
+    {
+        this.logger.debug(this.logger.modules.MODULE_CLIENT, `Error processing ref: ${ref}, ${e}`);
+        return { valid: false, month: 0, date: 0}
+    }
 }
 
-export function getPrevDailyRef(ref: string, meta: any) : string
-{
-    return 'Not yet implemented';
-}
 
 function getMonthName(month: number) : string
 {

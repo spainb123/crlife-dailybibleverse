@@ -1,11 +1,13 @@
 import IModuleRequestHandler from "../../descriptors/IModuleRequestHandler";
 import IDailyDataProvider from "../../descriptors/IDailyDataProivder";
 import Logger from "../../logger";
+import IReadingData, { IReadingNavData } from "../../descriptors/IReadingData";
+import IMetadataProvider from "../../descriptors/IMetadata";
 
 export default class DailyService implements IModuleRequestHandler
 {
     constructor(
-        private dailyStorageService: IDailyDataProvider, 
+        private dailyDataProvider: IDailyDataProvider, 
         private logger: Logger)
     {}
 
@@ -15,7 +17,8 @@ export default class DailyService implements IModuleRequestHandler
 
         this.logger.debug(this.logger.modules.MODULE_READINGS, `Reading daily data for ${month}, ${date}`);
 
-        this.dailyStorageService.fetchDailyData(month, date).then(data => {
+        this.dailyDataProvider.fetchDailyData(month, date)
+        .then(data => {
             response.setHeader('Content-Type', 'application/json');
             response.send(JSON.stringify(data));
         })
