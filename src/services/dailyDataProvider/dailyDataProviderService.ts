@@ -1,3 +1,4 @@
+import Logger from '../../logger';
 import IDailyDataProvider from "../../descriptors/IDailyDataProivder";
 import IDailyStorageReaderService from "../../descriptors/IDailyStorageReaderService";
 import IReadingData, { IReadingNavData } from "../../descriptors/IReadingData";
@@ -8,7 +9,8 @@ export default class DailyDataProviderService implements IDailyDataProvider
 {
     constructor(
         private dailyStorageReader : IDailyStorageReaderService,
-        private metadata: IMetadataProvider
+        private metadata: IMetadataProvider, 
+        private logger: Logger
     ) {}
 
     fetchDailyData(month: number, date: number): Promise<IReadingData & IReadingNavData> {
@@ -21,6 +23,8 @@ export default class DailyDataProviderService implements IDailyDataProvider
             month = newRef.month;
             date = newRef.date;
         }
+
+        this.logger.debug(this.logger.modules.SERVICES_DAILYPROVIDER, `Fetching daily data for month=${month}, date=${date}`);
 
         return this.dailyStorageReader.fetchDailyData(month, date)
             .then((data: IReadingData) => {

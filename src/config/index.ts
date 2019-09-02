@@ -28,7 +28,7 @@ export default function config(logger: Logger) {
    const passagesModule = new PassageModule(passagesStorage, metadataProvider, logger);
    const readingsModule = new ReadingModule(passagesStorage, notesStorage, dailyStorage, metadataProvider, logger);
 
-   const dailyDataProvider = new DailyDataProvider((process.env._DAILY_AZURE) ? azureDailyStorage : dailyStorage, metadataProvider);
+   const dailyDataProvider = new DailyDataProvider((process.env._DAILY_AZURE) ? azureDailyStorage : dailyStorage, metadataProvider, logger);
 
    const dailyModule = new DailyModule(dailyDataProvider, logger);
    const clientModule = new ClientModule(dailyDataProvider, logger);
