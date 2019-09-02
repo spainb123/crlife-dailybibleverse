@@ -5,7 +5,7 @@
   "main": "dist/main.js",
   "scripts": {
     "build:watch": "tsc -w",
-    "build" : "tsc",
+    "build": "tsc",
     "prestart": "tsc",
     "start": "node ./dist/main.js",
     "dev": "cross-env DEBUG=app* cross-env PORT=3000 nodemon --ignore './data/dev/' ./dist/main.js",
@@ -34,7 +34,7 @@
       "tsx",
       "js"
     ],
-    "roots" : [
+    "roots": [
       "./src"
     ],
     "transform": {
