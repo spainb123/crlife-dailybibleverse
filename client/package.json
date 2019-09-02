@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js",
     "build:watch": "webpack --config webpack.config.js --watch",
     "dev": "webpack-dev-server --env.dev --colors --hot --inline --port 8080 --open"
   },
@@ -14,27 +15,27 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "css-loader": "^2.1.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-redux": "^7.0.3",
-    "reactstrap": "^8.0.0",
-    "redux": "^4.0.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.1",
+    "reactstrap": "^8.0.1",
+    "redux": "^4.0.4",
     "style-loader": "^0.23.1"
   },
   "devDependencies": {
-    "@types/react": "^16.8.18",
-    "@types/react-dom": "^16.8.4",
-    "@types/react-redux": "^7.0.9",
-    "@types/reactstrap": "^8.0.1",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-redux": "^7.1.2",
+    "@types/reactstrap": "^8.0.4",
     "@types/redux": "^3.6.0",
     "awesome-typescript-loader": "^5.2.1",
     "node-sass": "^4.12.0",
-    "sass-loader": "^7.1.0",
+    "sass-loader": "^7.3.1",
     "source-map-loader": "^0.2.4",
     "svg-inline-loader": "^0.8.0",
-    "typescript": "^3.4.5",
-    "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.4.1"
+    "typescript": "^3.6.2",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
   }
 }
