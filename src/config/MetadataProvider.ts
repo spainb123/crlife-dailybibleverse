@@ -1,7 +1,10 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import IMetadataProvider, { IMetadataEntry } from '../descriptors/IMetadata';
-const metaConfigFile = path.join(__dirname, './../../data/meta.json');
+const metaConfigFile = (meta: string | undefined) => { 
+    const filePath = "./../../data/" + ((meta) ? `meta.${meta}.json` : `meta.json`);
+    return path.join(__dirname, filePath) 
+}
 
 export default class MetadataProvider implements IMetadataProvider
 {
@@ -12,7 +15,7 @@ export default class MetadataProvider implements IMetadataProvider
             this.metadata = metaData; 
         }
         else {
-            this.metadata = JSON.parse(fs.readFileSync(metaConfigFile).toString());
+            this.metadata = JSON.parse(fs.readFileSync(metaConfigFile(process.env['META'])).toString());
         }
     }
 

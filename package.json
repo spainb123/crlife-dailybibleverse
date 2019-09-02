@@ -8,7 +8,7 @@
     "build": "tsc",
     "prestart": "tsc",
     "start": "node ./dist/main.js",
-    "dev": "cross-env DEBUG=app* cross-env PORT=3000 nodemon --ignore './data/dev/' ./dist/main.js",
+    "dev": "cross-env DEBUG=app* cross-env PORT=3000 cross-env META=local nodemon --ignore './data/dev/' ./dist/main.js",
     "dev:azure": "cross-env DEBUG=app* cross-env PORT=3000 cross-env _DAILY_AZURE=true nodemon --ignore './data/dev/' ./dist/main.js",
     "test": "jest",
     "packclient": "node ./util/packclient.js"

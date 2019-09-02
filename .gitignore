@@ -7,6 +7,5 @@ ftp-creds.json
 
 /node_modules
 /fulldata
-/data/dev
 /dist
 /.vscode

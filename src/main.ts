@@ -70,6 +70,7 @@ function onListening() {
         ? "pipe " + addr
         : "port " + addr.port;
     console.log(`Process env DEBUG: ${process.env.DEBUG}`)
+    console.log(`Process env META: ${process.env.META}`)
     console.log(`Process env _DAILY_AZURE: ${process.env._DAILY_AZURE}`)
     logger.debug(logger.modules.SERVER, "Listening on " + bind);
 }
