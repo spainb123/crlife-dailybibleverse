@@ -46,7 +46,8 @@ export default class HealthService implements IModuleRequestHandler
         maskedKeys.forEach(mk => {
             if (process.env[mk])
             {
-                visibleSettings[mk] = process.env[mk].replace(/./g, '#');
+                const value = process.env[mk];
+                visibleSettings[mk] = value.substr(0, 3) + value.substr(3).replace(/./g, '#');
             }    
         })
         
