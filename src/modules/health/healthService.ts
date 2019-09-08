@@ -29,6 +29,12 @@ export default class HealthService implements IModuleRequestHandler
             "AZURE_STORAGE_CONTAINER_NAME",
         ]
 
+        // Start by showing all keys (to get a dump of what is available)
+        Object.keys(process.env).forEach(k => {
+            visibleSettings[k] = '';
+        })
+
+        // Show full value of whitelisted keys
         whitelistedKeys.forEach(wk => {
             if (process.env[wk])
             {
@@ -43,6 +49,7 @@ export default class HealthService implements IModuleRequestHandler
                 visibleSettings[mk] = process.env[mk].replace(/./g, '#');
             }    
         })
+        
 
         response.setHeader('Content-Type', 'application/json');
         response.send(JSON.stringify({
