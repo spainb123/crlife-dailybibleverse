@@ -1,5 +1,5 @@
 import * as express from 'express';
-import loadEnvironment from './env';
+import ConfigProvider from './ConfigProvider';
 import MetadataProvider from './MetadataProvider';
 import NotesStorage from '../services/noteStorage';
 import ReadingModule from '../modules/readings';
@@ -17,7 +17,7 @@ const app = express();
 
 export default function config(logger: Logger) {
 
-   loadEnvironment();
+   const config = new ConfigProvider();
 
    const metadataProvider = new MetadataProvider();
    const passagesStorage = new PassagesStorage(logger);

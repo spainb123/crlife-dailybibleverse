@@ -1,0 +1,5 @@
+{
+    "extends" : "default",
+    "port" : 80,
+    "meta" : "prod"
+}
