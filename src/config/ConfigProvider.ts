@@ -25,13 +25,27 @@ class ConfigProvider
 
     constructor(appEnv: string | null = null) {
         this._env = appEnv || process.env.APP_ENV || 'development';
-        this.config = <Provider>appfig(path.join(__dirname, `./../../config/${this._env}.json`));
+        
+        // Environment variable options for appfig
+        const options = { env: [
+            'NLT_API_KEY',
+            'AZURE_STORAGE_ACCOUNT_NAME',
+            'AZURE_STORAGE_ACCOUNT_ACCESS_KEY',
+            'AZURE_STORAGE_CONTAINER_NAME'
+        ]}
 
-        const appConfig = JSON.parse(fs.readFileSync(appConfigFile).toString());
+        // Load in values from config/ files
+        this.config = <Provider>appfig(path.join(__dirname, `./../../config/${this._env}.json`), options);
 
-        for (var propName in appConfig)
+        // Consume values from app.config.json if it exists
+        if(fs.existsSync(appConfigFile))
         {
-            this.config.set(propName, appConfig[propName]);
+            const appJsonConfig = JSON.parse(fs.readFileSync(appConfigFile).toString());
+
+            for (var propName in appJsonConfig)
+            {
+                this.config.set(propName, appJsonConfig[propName]);
+            }    
         }
     }
 
