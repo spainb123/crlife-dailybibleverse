@@ -6,6 +6,7 @@ import IModuleRequestHandler from '../../descriptors/IModuleRequestHandler';
 import { getNormalizedDates } from '../../helpers/dateHelper';
 import Logger from '../../logger';
 import IMetadataProvider from '../../descriptors/IMetadata';
+import ConfigProvider from '../../config/ConfigProvider';
 
 interface PassagesQuery {
     month: number,
@@ -17,6 +18,7 @@ interface PassagesQuery {
 export default class PassagesService implements IModuleRequestHandler
 {
     constructor(
+        private config: ConfigProvider,
         private storage: IPassageStorageService, 
         private metadata: IMetadataProvider,
         private logger: Logger)
@@ -49,7 +51,7 @@ export default class PassagesService implements IModuleRequestHandler
     }
 
     private fetchAndWriteData(nltRef: string, write: boolean, month: number, date: number, type: PassageEntryType) : Promise<string> {
-        return fetchNLTData( nltRef, this.logger )
+        return fetchNLTData( nltRef, this.config.get("NLT_API_KEY"), this.logger )
         .then(data => {
             if (write)
             {

@@ -1,5 +1,5 @@
 {
     "extends" : "default",
-    "port" : 80,
-    "meta" : "prod"
+    "meta" : "prod",
+    "azure_storage" : true
 }

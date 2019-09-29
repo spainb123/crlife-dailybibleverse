@@ -7,10 +7,13 @@ const appfig = require('appfig');
 const appConfigFile = path.join(__dirname, './../../app.config.json');  // Secrets that should not be committed to source control
 
 interface AppConfig {
-    debug: string,
     meta: 'local' | 'production',
     port: number,
-    azure_storage: boolean
+    azure_storage: boolean,
+    NLT_API_KEY: string,
+    AZURE_STORAGE_ACCOUNT_NAME: string,
+    AZURE_STORAGE_ACCOUNT_ACCESS_KEY: string,
+    AZURE_STORAGE_CONTAINER_NAME: string
 }
 
 type AppConfigKey = keyof AppConfig

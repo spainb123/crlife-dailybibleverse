@@ -19,16 +19,16 @@ export default function config(logger: Logger) {
 
    const config = new ConfigProvider();
 
-   const metadataProvider = new MetadataProvider();
+   const metadataProvider = new MetadataProvider(config);
    const passagesStorage = new PassagesStorage(logger);
    const notesStorage = new NotesStorage(logger);
-   const azureDailyStorage = new AzureDailyStorage(logger);
+   const azureDailyStorage = new AzureDailyStorage(config, logger);
    const dailyStorage = new DailyStorage(logger);
    const healthModule = new HealthModule(logger);
-   const passagesModule = new PassageModule(passagesStorage, metadataProvider, logger);
+   const passagesModule = new PassageModule(config, passagesStorage, metadataProvider, logger);
    const readingsModule = new ReadingModule(passagesStorage, notesStorage, dailyStorage, metadataProvider, logger);
 
-   const dailyDataProvider = new DailyDataProvider((process.env._DAILY_AZURE) ? azureDailyStorage : dailyStorage, metadataProvider, logger);
+   const dailyDataProvider = new DailyDataProvider((config.get("azure_storage")) ? azureDailyStorage : dailyStorage, metadataProvider, logger);
 
    const dailyModule = new DailyModule(dailyDataProvider, logger);
    const clientModule = new ClientModule(dailyDataProvider, logger);

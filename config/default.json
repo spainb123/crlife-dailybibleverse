@@ -1,6 +1,5 @@
 {
-    "debug": "",
-    "port" : 3000,
+    "port" : 80,
     "meta" : "local",
     "azure_storage" : false
 }

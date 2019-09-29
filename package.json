@@ -9,7 +9,7 @@
     "prestart": "tsc",
     "start": "node ./dist/main.js",
     "dev": "cross-env APP_ENV=development cross-env DEBUG=app* nodemon --ignore './data/dev/' ./dist/main.js",
-    "dev:azure": "cross-env APP_ENV=development cross-env DEBUG=app* nodemon --ignore './data/dev/' ./dist/main.js",
+    "dev:azure": "cross-env APP_ENV=development-azure cross-env DEBUG=app* nodemon --ignore './data/dev/' ./dist/main.js",
     "dev:debug": "cross-env APP_ENV=development cross-env DEBUG=app* node --inspect-brk ./dist/main.js",
     "test": "jest",
     "test:debug" : "node --inspect-brk ./node_modules/jest/bin/jest.js",
