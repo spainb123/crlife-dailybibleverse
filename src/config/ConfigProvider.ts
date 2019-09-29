@@ -22,7 +22,7 @@ class ConfigProvider
 
     constructor(appEnv: string | null = null) {
         this._env = appEnv || process.env.APP_ENV || 'development';
-        this.config = <Provider>appfig(path.join(__dirname, `./settings/${this._env}.json`));
+        this.config = <Provider>appfig(path.join(__dirname, `./../../config/${this._env}.json`));
 
         const appConfig = JSON.parse(fs.readFileSync(appConfigFile).toString());
 

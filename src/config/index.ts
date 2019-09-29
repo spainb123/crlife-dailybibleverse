@@ -33,6 +33,9 @@ export default function config(logger: Logger) {
    const dailyModule = new DailyModule(dailyDataProvider, logger);
    const clientModule = new ClientModule(dailyDataProvider, logger);
 
+   // Setup app ports
+   app.set("port", normalizePort(config.get("port")));
+
    app.use('/public', express.static('public'))
 
    app.get('/', clientModule.requestHandler.bind(clientModule))
@@ -45,5 +48,19 @@ export default function config(logger: Logger) {
 
    app.get('/reading', readingsModule.requestHandler.bind(readingsModule))
 
-   return app;
+   return { app, config };
+}
+
+function normalizePort(val: any) {
+   const port = parseInt(val, 10);
+
+   if (isNaN(port)) {
+       return val;
+   }
+
+   if (port >= 0) {
+       return port;
+   }
+
+   return false;
 }
