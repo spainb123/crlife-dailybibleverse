@@ -1,38 +1,21 @@
 import * as http from 'http';
-import * as config from './config';
+import * as Config from './config';
 import Logger from './logger';
 
 const logger = new Logger();
 
-const httpPort = normalizePort(process.env.PORT || 80);
-
-const app = config.default(logger);
-app.set("port", httpPort);
+const { app, config } = Config.default(logger);
 
 const httpServer = http.createServer(app);
 
 // listen on provided ports
-httpServer.listen(httpPort);
+httpServer.listen(config.get("port"));
 
 // add error handler
 httpServer.on("error", onError);
 
 // start listening on port
 httpServer.on("listening", onListening);
-
-function normalizePort(val: any) {
-    const port = parseInt(val, 10);
-
-    if (isNaN(port)) {
-        return val;
-    }
-
-    if (port >= 0) {
-        return port;
-    }
-
-    return false;
-}
 
 /**
  * Event listener for HTTP server "error" event.
@@ -42,6 +25,7 @@ function onError(error: any) {
         throw error;
     }
 
+    const httpPort = app.get("port");
     var bind = typeof httpPort === "string"
         ? "Pipe " + httpPort
         : "Port " + httpPort;
@@ -69,9 +53,10 @@ function onListening() {
     var bind = typeof addr === "string"
         ? "pipe " + addr
         : "port " + addr.port;
+    console.log(`Process env APP_ENV: ${process.env.APP_ENV}`);
     console.log(`Process env DEBUG: ${process.env.DEBUG}`)
-    console.log(`Process env META: ${process.env.META}`)
-    console.log(`Process env _DAILY_AZURE: ${process.env._DAILY_AZURE}`)
+    console.log(`meta : ${config.get("meta")}`)
+    console.log(`azure_storage: ${config.get("azure_storage")}`)
     logger.debug(logger.modules.SERVER, "Listening on " + bind);
 }
 

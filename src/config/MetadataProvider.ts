@@ -1,6 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import IMetadataProvider, { IMetadataEntry } from '../descriptors/IMetadata';
+import ConfigProvider from './ConfigProvider';
 const metaConfigFile = (meta: string | undefined) => { 
     const filePath = "./../../data/" + ((meta) ? `meta.${meta}.json` : `meta.json`);
     return path.join(__dirname, filePath) 
@@ -10,12 +11,12 @@ export default class MetadataProvider implements IMetadataProvider
 {
     private metadata : any;
 
-    constructor(metaData : any | null = null) {
+    constructor(config: ConfigProvider, metaData : any | null = null) {
         if (metaData) { 
             this.metadata = metaData; 
         }
         else {
-            this.metadata = JSON.parse(fs.readFileSync(metaConfigFile(process.env['META'])).toString());
+            this.metadata = JSON.parse(fs.readFileSync(metaConfigFile(config.get("meta"))).toString());
         }
     }
 

@@ -5,17 +5,19 @@ import IReadingData from "../../descriptors/IReadingData";
 import { SharedKeyCredential, StorageURL, ServiceURL, ContainerURL, BlobURL, Aborter } from "@azure/storage-blob";
 import { getDailyDataFileName } from "../../helpers/dateHelper";
 import IDailyStorageReaderService from "../../descriptors/IDailyStorageReaderService";
+import ConfigProvider from "../../config/ConfigProvider";
 
 export default class AzureDailyStorage implements IDailyStorageReaderService
 {
     constructor(
-        private logger: Logger
+      private config: ConfigProvider,
+      private logger: Logger
     ) {}
 
     fetchDailyData(month: number, date: number): Promise<IReadingData> {
         
-        const account = process.env.AZURE_STORAGE_ACCOUNT_NAME;
-        const creds = new SharedKeyCredential(account, process.env.AZURE_STORAGE_ACCOUNT_ACCESS_KEY);
+        const account = this.config.get("AZURE_STORAGE_ACCOUNT_NAME");
+        const creds = new SharedKeyCredential(account, this.config.get("AZURE_STORAGE_ACCOUNT_ACCESS_KEY"));
         const pipeline = StorageURL.newPipeline(creds);
         const fileName = getDailyDataFileName(month, date);
 
@@ -24,7 +26,7 @@ export default class AzureDailyStorage implements IDailyStorageReaderService
             pipeline
         );
 
-        const containerURL = ContainerURL.fromServiceURL(serviceUrl, process.env.AZURE_STORAGE_CONTAINER_NAME);
+        const containerURL = ContainerURL.fromServiceURL(serviceUrl, this.config.get("AZURE_STORAGE_CONTAINER_NAME"));
         const blobURL = BlobURL.fromContainerURL(containerURL, fileName);
 
         return blobURL.download(Aborter.none, 0)
