@@ -1,6 +1,7 @@
 import 'jest';
 import MetadataProvider from '../MetadataProvider';
 import IMetadataProvider from '../../descriptors/IMetadata';
+import ConfigProvider from '../ConfigProvider';
 
 const metadata = [
     [ "0601", {
@@ -47,10 +48,11 @@ const metadata = [
 ]
 
 let metadataProvider : IMetadataProvider;
+let configProvider : ConfigProvider;
 
 describe('Metaloader', () => {
     beforeAll(() => {
-        metadataProvider = new MetadataProvider(metadata);
+        metadataProvider = new MetadataProvider(configProvider, metadata);
     })
 
     it('should return entry by ref', () => {

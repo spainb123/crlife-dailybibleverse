@@ -1,12 +1,14 @@
 import 'jest';
 import MetadataProvider from '../MetadataProvider';
 import { IMetadataEntry } from '../../descriptors/IMetadata';
+import ConfigProvider from '../ConfigProvider';
 
 let metadataProvider : MetadataProvider;
+let configProvider : ConfigProvider;
 
 describe('Metadata provider against meta file', () => {
     beforeAll(() => {
-        metadataProvider = new MetadataProvider();
+        metadataProvider = new MetadataProvider(new ConfigProvider());
     })
 
     it('should contain an entry for 0601', () => {
