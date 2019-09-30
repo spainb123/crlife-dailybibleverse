@@ -7,7 +7,7 @@ const appfig = require('appfig');
 const appConfigFile = path.join(__dirname, './../../app.config.json');  // Secrets that should not be committed to source control
 
 interface AppConfig {
-    meta: 'local' | 'production',
+    meta: 'local' | 'prod',
     port: number,
     azure_storage: boolean,
     NLT_API_KEY: string,

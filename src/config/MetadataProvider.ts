@@ -2,8 +2,8 @@ import * as path from 'path';
 import * as fs from 'fs';
 import IMetadataProvider, { IMetadataEntry } from '../descriptors/IMetadata';
 import ConfigProvider from './ConfigProvider';
-const metaConfigFile = (meta: string | undefined) => { 
-    const filePath = "./../../data/" + ((meta) ? `meta.${meta}.json` : `meta.json`);
+const metaConfigFile = (meta: string) => { 
+    const filePath = "./../../data/" + `meta.${meta}.json`;
     return path.join(__dirname, filePath) 
 }
 
