@@ -9,6 +9,7 @@ const appConfigFile = path.join(__dirname, './../../app.config.json');  // Secre
 interface AppConfig {
     meta: 'local' | 'prod',
     port: number,
+    admin_port: number,
     azure_storage: boolean,
     NLT_API_KEY: string,
     AZURE_STORAGE_ACCOUNT_NAME: string,

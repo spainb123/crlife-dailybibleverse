@@ -1,5 +1,6 @@
 {
     "port" : 8080,
+    "admin_port" : 8081,
     "meta" : "local",
     "azure_storage" : false
 }

@@ -14,6 +14,7 @@ import DailyDataProvider from '../services/dailyDataProvider';
 import Logger from '../logger';
 
 const app = express();
+const adminApp = express();
 
 export default function config(logger: Logger) {
 
@@ -33,34 +34,18 @@ export default function config(logger: Logger) {
    const dailyModule = new DailyModule(dailyDataProvider, logger);
    const clientModule = new ClientModule(dailyDataProvider, logger);
 
-   // Setup app ports
-   app.set("port", normalizePort(config.get("port")));
 
+   // App routes
    app.use('/public', express.static('public'))
-
    app.get('/', clientModule.requestHandler.bind(clientModule))
-
-   app.get('/daily', dailyModule.requestHandler.bind(dailyModule))
-
    app.get('/health', healthModule.requestHandler.bind(healthModule))
 
-   app.get('/passages', passagesModule.requestHandler.bind(passagesModule))
+   // Admin routes
+   adminApp.get('/health', healthModule.requestHandler.bind(healthModule))
+   adminApp.get('/daily', dailyModule.requestHandler.bind(dailyModule))
+   adminApp.get('/health', healthModule.requestHandler.bind(healthModule))
+   adminApp.get('/passages', passagesModule.requestHandler.bind(passagesModule))
+   adminApp.get('/reading', readingsModule.requestHandler.bind(readingsModule))
 
-   app.get('/reading', readingsModule.requestHandler.bind(readingsModule))
-
-   return { app, config };
-}
-
-function normalizePort(val: any) {
-   const port = parseInt(val, 10);
-
-   if (isNaN(port)) {
-       return val;
-   }
-
-   if (port >= 0) {
-       return port;
-   }
-
-   return false;
+   return { app, adminApp, config };
 }
