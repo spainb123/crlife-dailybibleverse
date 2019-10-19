@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { Selection, NavRef } from '../store/Models';
-import { setSelection } from '../store/Actions';
+import { setSelection, toggleFooter } from '../store/Actions';
 import { connect } from 'react-redux';
 import FooterButtonContainer from './FooterButtonContainer';
 
@@ -19,13 +19,11 @@ interface IFooterActions
 class Footer extends React.Component<IFooterProps & IFooterActions>
 {
     onFooterButtonContainerClicked = (selection: Selection) => {
-        console.log(`onFooterButtonContainerClicked: ${selection}`);
         this.props.makeSelection(selection);
     }
 
     onNavButtonContainerClicked = (ref: NavRef) => {
         const targetRef = (ref == NavRef.Next) ? this.props.nextRef : this.props.prevRef;
-        console.log(`onNavButtonContainerClicked: ${ref}, ${targetRef}`);
         window.location.href = `${window.location.origin}${window.location.pathname}?ref=${targetRef}`;
     }
 
@@ -91,7 +89,10 @@ class Footer extends React.Component<IFooterProps & IFooterActions>
 function mapDispatchToProps(dispatch: any) : IFooterActions
 {
     return {
-        makeSelection: (selection: Selection) => { dispatch(setSelection(selection))}
+        makeSelection: (selection: Selection) => { 
+            dispatch(toggleFooter());
+            dispatch(setSelection(selection));
+        }
     }
 }
 

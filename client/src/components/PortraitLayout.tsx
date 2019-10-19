@@ -5,7 +5,7 @@ import ReadingData from './ReadingData';
 import Chevron from './Chevron/Chevron';
 import { IStore } from '../store/Models';
 import { connect } from 'react-redux';
-import { toggleFooter } from '../store/Actions';
+import { toggleFooter as toggleFooterAction } from '../store/Actions';
 
 interface IPortraitLayoutProps
 {
@@ -17,13 +17,13 @@ interface IPortraitLayoutProps
 
 interface IPortraitLayoutActions
 {
-    toggleFooterExpand() : void
+    toggleFooter() : void
 }
 
 class PortraitLayout extends React.Component<IPortraitLayoutProps & IPortraitLayoutActions>
 {
     onChevronClicked = () => {
-        this.props.toggleFooterExpand();
+        this.props.toggleFooter();
     }
 
     render() {        
@@ -61,7 +61,9 @@ function mapStateToProps(state: IStore) : IPortraitLayoutProps
 function mapDispatchToProps(dispatch: any) : IPortraitLayoutActions
 {
     return {
-        toggleFooterExpand: () => { dispatch(toggleFooter())}
+        toggleFooter: () => { 
+            dispatch(toggleFooterAction());
+        }
     }
 }
 
