@@ -18998,12 +18998,10 @@ class Footer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     constructor() {
         super(...arguments);
         this.onFooterButtonContainerClicked = (selection) => {
-            console.log(`onFooterButtonContainerClicked: ${selection}`);
             this.props.makeSelection(selection);
         };
         this.onNavButtonContainerClicked = (ref) => {
             const targetRef = (ref == _store_Models__WEBPACK_IMPORTED_MODULE_2__["NavRef"].Next) ? this.props.nextRef : this.props.prevRef;
-            console.log(`onNavButtonContainerClicked: ${ref}, ${targetRef}`);
             window.location.href = `${window.location.origin}${window.location.pathname}?ref=${targetRef}`;
         };
     }
@@ -19034,7 +19032,10 @@ class Footer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        makeSelection: (selection) => { dispatch(Object(_store_Actions__WEBPACK_IMPORTED_MODULE_3__["setSelection"])(selection)); }
+        makeSelection: (selection) => {
+            dispatch(Object(_store_Actions__WEBPACK_IMPORTED_MODULE_3__["toggleFooter"])());
+            dispatch(Object(_store_Actions__WEBPACK_IMPORTED_MODULE_3__["setSelection"])(selection));
+        }
     };
 }
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(null, mapDispatchToProps)(Footer));
@@ -19118,7 +19119,7 @@ class PortraitLayout extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     constructor() {
         super(...arguments);
         this.onChevronClicked = () => {
-            this.props.toggleFooterExpand();
+            this.props.toggleFooter();
         };
     }
     render() {
@@ -19141,7 +19142,9 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        toggleFooterExpand: () => { dispatch(Object(_store_Actions__WEBPACK_IMPORTED_MODULE_6__["toggleFooter"])()); }
+        toggleFooter: () => {
+            dispatch(Object(_store_Actions__WEBPACK_IMPORTED_MODULE_6__["toggleFooter"])());
+        }
     };
 }
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(mapStateToProps, mapDispatchToProps)(PortraitLayout));
